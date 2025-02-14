@@ -1,5 +1,4 @@
 # Charles Williams
-# 010988078
 # Software Engineering Project - Splash Screen
 
 # Website referenced: https://www.geeksforgeeks.org/how-to-create-a-splash-screen-using-tkinter/?ref=ml_lbp
@@ -28,7 +27,8 @@ class SplashScreen(Frame):
         # Cover whole screen
         self.master.overrideredirect(True)
         self.lift()
-
+        
+# Might need to use update or something in order to link with player entry screen
 def main():
     # Create the main window
     splashScreen = Tk()
