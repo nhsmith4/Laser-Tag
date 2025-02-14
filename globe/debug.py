@@ -1,9 +1,11 @@
 ## cy - Debug Flags
 DEBUG =         2 ** 0
-VIEW =          2 ** 1
-MODEL =         2 ** 2
-CONTROLLER =    2 ** 3
-UDP =           2 ** 4
+ADVANCED =      2 ** 1
+VIEW =          2 ** 2
+MODEL =         2 ** 3
+CONTROLLER =    2 ** 4
+UDP =           2 ** 5
+FULL = -1
 
 
 ## cy - Global Flag
@@ -19,4 +21,4 @@ def printDebug(msg:str, opCode=0) -> None:
 
 ## cy - 
 def getDebug(opCode:int = 0) -> bool:
-    return flag == (DEBUG | opCode)
+    return bool((flag & (DEBUG | opCode)) == (DEBUG | opCode))

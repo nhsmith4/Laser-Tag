@@ -1,4 +1,5 @@
 import socket
+import tkinter as tk
 
 import globe.essentials
 import globe.debug as debug
@@ -33,13 +34,27 @@ def establish_client() -> None:
     return
 
 
+
+
+
+
+
 ## cy - local test app
 if __name__ == "__main__":
     ## Setup
     import sys
+    from tkinter import *
+
+    import view
+
     debug.flag = debug.flag | (debug.DEBUG if "debug" in sys.argv else 0)
     debug.flag = debug.flag | (debug.UDP if "udp" in sys.argv else 0)
     printDebug("Debug mode activated")
+
+
+    ## tkinter code to create Settings panel
+    root = Tk()
+    view.add_settings(root)
 
     
 
@@ -66,6 +81,7 @@ if __name__ == "__main__":
 
             # Sending a reply to client
             udp_send(str(message), address)
+            root.update()
     else:
         print("UDP test client\n - Add \"server\" to argv to enable server mode.\n - input \'quit\' to exit.")
         while(True):
@@ -76,3 +92,5 @@ if __name__ == "__main__":
             else:
                 udp_send(message)
                 print(udp_receive())
+                
+            root.update()
