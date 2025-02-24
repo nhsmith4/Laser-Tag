@@ -6,6 +6,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
+import subprocess
 
 class SplashScreen(Frame):
     def __init__(self, master=None, width=1, height=1, useFactor=True):
@@ -28,6 +29,9 @@ class SplashScreen(Frame):
         self.master.overrideredirect(True)
         self.lift()
         
+def startPlayerEntryScreen():
+    subprocess.run(["python", "player_entry_screen.py"])  # Runs the player entry screen
+
 # Might need to use update or something in order to link with player entry screen
 def main():
     # Create the main window
@@ -46,12 +50,10 @@ def main():
     imageLabel.pack(side=TOP, expand=YES)
     
     # Splash screen lasts 3 seconds
-    splashScreen.after(3000, lambda: (splashScreen.destroy(), splashScreen.quit()))
+    splashScreen.after(3000, lambda: (splashScreen.destroy(), startPlayerEntryScreen())) # Lead into player entry screen
 
     # Run Tkinter main loop
     splashScreen.mainloop()
 
 if __name__ == '__main__':
     main()
-
-# Leads into player select screen presumably
