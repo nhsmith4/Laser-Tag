@@ -14,8 +14,14 @@ This project was created using *Python v3.9.2* within a Debian Linux Virtual Mac
 The library *Tkinter* is the primary library used for graphics. If Tkinter is not installed natively on your machine, you can use the following command to install it.<br><br>
 ```sudo apt install python3-tk```
 <br><br>
-The library used for communicating with the database is **CHANGE ME**. To install **CHANGE ME** onto your device, enter the following command:<br><br>
-```ENTER THE FOLLOWING COMMAND INTO THE TERMINAL```
+The library used for communicating with the database is *psycopg2*. To install *psycopg* onto your device, enter the following command:<br><br>
+```python3 -m venv path/to/venv```
+<br><br>
+```source path/to/venv/bin/activate```
+<br><br>
+```pip install psycopg2-binary```
+
+
 
 
 
