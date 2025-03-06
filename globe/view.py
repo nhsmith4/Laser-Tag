@@ -1,5 +1,6 @@
 ## cy - global window
 win = None
+win_frames = {}
 
 
 ## cy - settings variables

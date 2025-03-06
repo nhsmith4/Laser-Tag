@@ -18,14 +18,12 @@ def create_splash_screen(root, width=1, height=1, useFactor=True):
     # Get the coordinates
     x = (screenWidth / 2) - (winWidth / 2)
     y = (screenHeight / 2) - (winHeight / 2)
-    root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
+    ## root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
     
     # Cover the whole screen
-    root.overrideredirect(True)
-    root.lift()
     
     # Create the splash screen frame
-    splash = Frame(root)
+    splash = Frame(root, relief=SUNKEN)
     splash.pack(side=TOP, fill=BOTH, expand=YES)
     
     # Load and resize the image

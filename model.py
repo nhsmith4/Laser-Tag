@@ -38,4 +38,5 @@ def start(args:list=None) -> None:
             continue
 
     time.sleep(3)
+    globe.essentials.gameState = globe.essentials.USER_INPUT
         

@@ -2,24 +2,23 @@ from tkinter import *
 import tkinter as tk
 #import model.py as model
 
-def create_player_entry_screen(root, width=1, height=1, useFactor=True):
+def create_player_entry_screen(root):
     
 
-    entry_screen = Frame(root)
-    entry_screen.pack(side=TOP, fill=BOTH, expand=YES)
+    entry_screen = tk.Frame(root, relief=tk.SUNKEN)
 
-    red_background = tk.Frame(root, bd=0, highlightthickness=0, background="red")
-    green_background = tk.Frame(root, bd=0, highlightthickness=0, background="green")
+    red_background = tk.Frame(entry_screen, bd=0, highlightthickness=0, background="red")
+    green_background = tk.Frame(entry_screen, bd=0, highlightthickness=0, background="green")
     red_background.place(relx=0, rely=0, relwidth=0.5, relheight=1)
     green_background.place(relx=0.5, rely=0, relwidth=0.5, relheight=1)
 
-    top_frame = tk.Frame(root, bg="black")
+    top_frame = tk.Frame(entry_screen, bg="black")
     top_frame.pack(fill="x")
 
     title_label = tk.Label(top_frame, text="Edit Current Game", fg="white", bg="black", font=("Helvetica", 16, "bold"))
     title_label.pack(pady=10)
 
-    main_frame = tk.Frame(root)
+    main_frame = tk.Frame(entry_screen)
     main_frame.pack(expand=True)
 
     red_frame = tk.Frame(main_frame, bg="red")
@@ -69,7 +68,7 @@ def create_player_entry_screen(root, width=1, height=1, useFactor=True):
         tk.Label(green_nicks, text=f"Nickname {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
 
     # Buttons at bottom of screen
-    bottom_frame = tk.Frame(root, bg="black")
+    bottom_frame = tk.Frame(entry_screen, bg="black")
     bottom_frame.pack(fill="x")
 
     game_mode_label = tk.Label(bottom_frame, text="Game Mode: Standard\npublic mode", fg="white", bg="black")
@@ -143,5 +142,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     root.state("zoomed")
     root.title("Player Screen")
-    create_player_entry_screen(root)
+    frame = create_player_entry_screen(root)
+    frame.pack()
     root.mainloop()
