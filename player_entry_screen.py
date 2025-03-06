@@ -62,7 +62,7 @@ label_green_nicks = tk.Label(green_nicks, text="GREEN NICKNAMES", fg="green", fo
 label_green_nicks.pack(pady=10)
 
 for i in range(20):
-    tk.Entry(green_player_ids, text=f"ID {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
+    tk.Entry(green_player_ids, bg="gray30", fg="white", width=20).pack(pady=1)
     tk.Entry(green_equipment_ids, bg="gray30", fg="white", width=20).pack(pady=1)
     tk.Label(green_nicks, text=f"Nickname {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
 
