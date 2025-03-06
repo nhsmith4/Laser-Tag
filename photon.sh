@@ -2,14 +2,17 @@
 
 update()
 {
+	cd ./photon
 	git init
 	git pull "https://github.com/nhsmith4/Laser-Tag" main
+	cd ../
 
 }
 
 install_packages()
 {
 	echo "installing required packages..."
+	mkdir ./photon
 	sudo apt install python3-tk
 	python3 -m venv path/to/venv
 	source path/to/venv/bin/activate
@@ -27,4 +30,5 @@ if [ "$1" == "--update" ]; then
 	update
 fi
 
+cd ./photon
 python3 main.py $*
