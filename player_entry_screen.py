@@ -27,33 +27,43 @@ green_frame = tk.Frame(main_frame, bg="green")
 green_frame.pack(side="left", expand=True, fill="both")
 
 # Red side
-red_ids = tk.Frame(red_frame)
-red_ids.pack(side="left", expand=True, padx=10, pady=10)
+red_player_ids = tk.Frame(red_frame)
+red_player_ids.pack(side="left", expand=True, padx=10, pady=10)
+red_equipment_ids = tk.Frame(red_frame)
+red_equipment_ids.pack(side="left", expand=True, padx=10, pady=10)
 red_nicks = tk.Frame(red_frame)
 red_nicks.pack(side="left", expand=True, padx=10, pady=10)
 
-label_red_ids = tk.Label(red_ids, text="RED IDS", fg="red", font=("Helvetica", 10, "bold"))
-label_red_ids.pack(pady=10)
+entry_red_player_ids = tk.Label(red_player_ids, text="RED PLAYER IDS", fg="red", font=("Helvetica", 10, "bold"))
+entry_red_player_ids.pack(pady=10)
+entry_red_equipment_ids = tk.Label(red_equipment_ids, text="RED EQUIPMENT IDS", fg="red", font=("Helvetica", 10, "bold"))
+entry_red_equipment_ids.pack(pady=10)
 label_red_nicks = tk.Label(red_nicks, text="RED NICKNAMES", fg="red", font=("Helvetica", 10, "bold"))
 label_red_nicks.pack(pady=10)
 
 for i in range(20):
-    tk.Label(red_ids, text=f"ID {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
+    tk.Entry(red_player_ids, bg="gray30", fg="white", width=20).pack(pady=1)
+    tk.Entry(red_equipment_ids, bg="gray30", fg="white", width=20).pack(pady=1)
     tk.Label(red_nicks, text=f"Nickname {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
 
 # Green side
-green_ids = tk.Frame(green_frame)
-green_ids.pack(side="left", expand=True, padx=10, pady=10)
+green_player_ids = tk.Frame(green_frame)
+green_player_ids.pack(side="left", expand=True, padx=10, pady=10)
+green_equipment_ids = tk.Frame(green_frame)
+green_equipment_ids.pack(side="left", expand=True, padx=10, pady=10)
 green_nicks = tk.Frame(green_frame)
 green_nicks.pack(side="left", expand=True, padx=10, pady=10)
 
-label_green_ids = tk.Label(green_ids, text="GREEN IDS", fg="green", font=("Helvetica", 10, "bold"))
-label_green_ids.pack(pady=10)
+entry_green_player_ids = tk.Label(green_player_ids, text="GREEN PLAYER IDS", fg="green", font=("Helvetica", 10, "bold"))
+entry_green_player_ids.pack(pady=10)
+entry_green_equipment_ids = tk.Label(green_equipment_ids, text="GREEN EQUIPMENT IDS", fg="green", font=("Helvetica", 10, "bold"))
+entry_green_equipment_ids.pack(pady=10)
 label_green_nicks = tk.Label(green_nicks, text="GREEN NICKNAMES", fg="green", font=("Helvetica", 10, "bold"))
 label_green_nicks.pack(pady=10)
 
 for i in range(20):
-    tk.Label(green_ids, text=f"ID {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
+    tk.Entry(green_player_ids, text=f"ID {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
+    tk.Entry(green_equipment_ids, bg="gray30", fg="white", width=20).pack(pady=1)
     tk.Label(green_nicks, text=f"Nickname {i+1}", bg="gray30", fg="white", width=20).pack(pady=1)
 
 # Buttons at bottom of screen
@@ -66,15 +76,15 @@ game_mode_label.pack(side="left", padx=10, pady=20)
 fkeys_frame = tk.Frame(bottom_frame, bg="black")
 fkeys_frame.pack(side="right")
 
-# Edit Game
+# Edit Game *
 def on_f1_click():
     pass
 
-# Game Parameters
+# Game Parameters *
 def on_f2_click():
     pass
 
-# Start Game
+# Start Game *
 def on_f3_click():
     pass
 
@@ -94,7 +104,7 @@ def on_f8_click():
 def on_f10_click():
     pass
 
-# Clear Game
+# Clear Game *
 def on_f12_click():
     pass
 
@@ -124,14 +134,5 @@ f9_button.pack(side="left", padx=5)
 f10_button.pack(side="left", padx=5)
 f11_button.pack(side="left", padx=5)
 f12_button.pack(side="left", padx=5)
-
-'''f1_button.bind("<f1>", on_f1_click)
-f2_button.bind("<f2>", on_f2_click)
-f3_button.bind("<f3>", on_f3_click)
-f5_button.bind("<f5>", on_f5_click)
-f7_button.bind("<f7>", on_f7_click)
-f8_button.bind("<f8>", on_f8_click)
-f10_button.bind("<f10>", on_f10_click)
-f12_button.bind("<f12>", on_f12_click)'''
 
 root.mainloop()
