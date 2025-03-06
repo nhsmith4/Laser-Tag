@@ -16,12 +16,14 @@ if __name__ == "__main__":
 
     globe.essentials.gameState = globe.essentials.GAME_START
     view.start()
-    ##controller.start()
+    controller.start()
     model.start(sys.argv[1:len(sys.argv)])
+    
 
-    printDebug("Starting Application")
+    printDebug("Debug Mode Activated")
 
     while(globe.essentials.gameState > 0):
         view.update()
         controller.update()
         ##model.update()
+        

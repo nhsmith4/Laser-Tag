@@ -1,3 +1,4 @@
+import time
 import globe
 
 import globe.debug as debug
@@ -13,23 +14,28 @@ def set_ip() -> None:
 def start(args:list=None) -> None:
     for arg in args:
         if arg == "debug":
-            debug.flag = debug.flag | debug.DEBUG
+            debug.flag |= debug.DEBUG
             continue
         elif arg == "advanced":
-            debug.flag = debug.flag | debug.ADVANCED
+            debug.flag |= debug.ADVANCED
             continue
         elif arg == "view":
-            debug.flag = debug.flag | debug.VIEW
+            debug.flag |= debug.VIEW
             continue
         elif arg == "model":
-            debug.flag = debug.flag | debug.MODEL
+            debug.flag |= debug.MODEL
             continue
         elif arg == "controller":
-            debug.flag = debug.flag | debug.CONTROLLER
+            debug.flag |= debug.CONTROLLER
             continue
         elif arg == "FULL":
-            debug.flag = debug.flag | debug.FULL
+            debug.flag |= debug.FULL
+            continue
+        elif arg == "cake":
+            print("The cake is a lie.\n")
             continue
         else:
-            print("Unknown argument \"{}\". Please consult documentation.".format(arg))
+            continue
+
+    time.sleep(3)
         
