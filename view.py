@@ -42,11 +42,14 @@ def start() -> None:
     win = tkinter.Tk()
     win.title(globe.view.TITLE)
     win.geometry(globe.view.RESOLUTION)
+
     add_settings(win)
 
     gv.win_frames[globe.essentials.GAME_START] = splash.create_splash_screen(win)
     gv.win_frames[globe.essentials.USER_INPUT] = player_entry_screen.create_player_entry_screen(win)
-    
+
+
+    win.bind_all("<Key>", controller.on_key_press)
 
     win.update()
 
@@ -59,7 +62,8 @@ def start() -> None:
 def update() -> None:
     printDebug("View update", debug.VIEW | debug.ADVANCED)
     try:
-        gv.win_frames[globe.essentials.gameState-1].pack_forget()
+        for frame in gv.win_frames:
+            gv.win_frames[frame].pack_forget()
         gv.win_frames[globe.essentials.gameState].pack()
         win.update()
     except Exception as e:

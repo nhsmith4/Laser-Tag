@@ -1,3 +1,4 @@
+import globe
 from globe.view import win
 
 import model
