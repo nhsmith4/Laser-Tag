@@ -41,10 +41,10 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     imageLabel.pack(side=TOP, expand=YES)
     
     # Create countdown label
-    countdown_label = Label(countdown, text="30", font=("Arial", 100, "bold"), fg="yellow", bg="black", highlightthickness=0, bd=0)
-    countdown_label.place(relx=0.5, rely=0.545, anchor=CENTER)
+    countdown.label = Label(countdown, text="30", font=("Arial", 100, "bold"), fg="yellow", bg="black")
+    countdown.label.place(relx=0.5, rely=0.545, anchor=CENTER)
     
-    return countdown, countdown_label
+    return countdown
 
 def update_countdown(label, count, root):
     if count > 0:
@@ -58,8 +58,7 @@ if __name__ == '__main__':
     countdown, countdown_label = create_countdown_screen(root)
     
     # Start 30-second countdown
-    update_countdown(countdown_label, 30, root)
+    update_countdown(countdown, 30, root)
     
     # Run Tkinter main loop
     root.mainloop()
-
