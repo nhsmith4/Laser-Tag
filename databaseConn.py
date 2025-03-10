@@ -13,7 +13,7 @@ def get_connections():
         return None
 
 # Checking if the player ID exists in the database
-def player_exists(id):
+def player_exists(id) -> bool:
     conn = get_connections()
     if conn:
         cursor = conn.cursor()
@@ -40,3 +40,8 @@ def insert_player(id, codename):
     else:
         print("Connection failed")
         sys.exit()
+
+if __name__ == "__main__":
+    insert_player(1,"player1")
+    insert_player(1,"player2")
+    'insert_player(2,"player3")
