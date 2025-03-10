@@ -1,5 +1,7 @@
 from tkinter import *
 import tkinter as tk
+
+import controller
 #import model.py as model
 
 def create_player_entry_screen(root):
@@ -114,7 +116,7 @@ def create_player_entry_screen(root):
     f2_button = tk.Button(fkeys_frame, text="F2\nGame\nParameters", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=on_f2_click)
     f3_button = tk.Button(fkeys_frame, text="F3\nStart\nGame", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=on_f3_click)
     f4_button = tk.Button(fkeys_frame, text="", fg="white", bg="black", height=4, width=9, borderwidth=5)
-    f5_button = tk.Button(fkeys_frame, text="F5\nPreEntered\n Games", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=on_f5_click)
+    f5_button = tk.Button(fkeys_frame, text="F5\nPreEntered\n Games", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=controller.on_f5_click)
     f6_button = tk.Button(fkeys_frame, text="", fg="white", bg="black", height=4, width=9, borderwidth=5)
     f7_button = tk.Button(fkeys_frame, text="F7", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=on_f7_click)
     f8_button = tk.Button(fkeys_frame, text="F8\nView\nGame", fg="white", bg="black", height=4, width=9, borderwidth=5, relief="raised", command=on_f8_click)

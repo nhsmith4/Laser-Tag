@@ -14,7 +14,7 @@ from globe.debug import printDebug
 
 if __name__ == "__main__":
 
-    globe.essentials.gameState = globe.essentials.GAME_START
+    globe.essentials.gameState = globe.essentials.SPLASH
     view.start()
     controller.start()
     model.start(sys.argv[1:len(sys.argv)])

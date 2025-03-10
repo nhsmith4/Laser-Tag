@@ -12,6 +12,8 @@ from globe.debug import printDebug
 
 import splash
 import player_entry_screen
+import countdown
+import game_play
 
 g_local_state = None
 
@@ -47,8 +49,10 @@ def start() -> None:
 
     add_settings(win)
 
-    gv.win_frames[globe.essentials.GAME_START] = splash.create_splash_screen(win)
-    gv.win_frames[globe.essentials.USER_INPUT] = player_entry_screen.create_player_entry_screen(win)
+    gv.win_frames[globe.essentials.SPLASH] = splash.create_splash_screen(win)
+    gv.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry_screen.create_player_entry_screen(win)
+    gv.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
+    gv.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
 
 
     win.bind_all("<Key>", controller.on_key_press)
@@ -65,7 +69,6 @@ def update() -> None:
     global g_local_state
     printDebug("View update", debug.VIEW | debug.ADVANCED)
     try:
-        print(g_local_state != globe.essentials.gameState)
         if(g_local_state != globe.essentials.gameState):
             for frame in gv.win_frames:
                 gv.win_frames[frame].pack_forget()

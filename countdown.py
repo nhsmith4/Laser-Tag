@@ -18,11 +18,11 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Get the coordinates
     x = (screenWidth / 2) - (winWidth / 2)
     y = (screenHeight / 2) - (winHeight / 2)
-    root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
+    ##root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
     
     # Cover the whole screen
-    root.overrideredirect(True)
-    root.lift()
+    ##root.overrideredirect(True)
+    ##root.lift()
     
     # Create the countdown screen frame
     countdown = Frame(root)
@@ -42,7 +42,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     countdown_label = Label(countdown, text="30", font=("Arial", 100, "bold"), fg="yellow", bg="black", highlightthickness=0, bd=0)
     countdown_label.place(relx=0.5, rely=0.545, anchor=CENTER)
     
-    return countdown, countdown_label
+    return countdown
 
 def update_countdown(label, count, root):
     if count > 0:

@@ -8,6 +8,9 @@ from globe.debug import printDebug
 
 settings_command:str = ""
 
+def on_f5_click() -> None:
+    globe.essentials.gameState=globe.essentials.COUNTDOWN
+    ##model.set_clock()
 
 ## cy - sets up the keybinds for the view
 def start() -> None:
@@ -37,5 +40,9 @@ def on_key_press(event) -> None:
     
     if event.keysym == "F1":
         print("F1 pressed")
-    elif event == "k":
+    if key == "F5":
+        on_f5_click()
+    if event == "k":
         print("asfkjfjhdfsfkjfjhd")
+
+
