@@ -10,7 +10,7 @@ settings_command:str = ""
 
 def on_f5_click() -> None:
     globe.essentials.gameState=globe.essentials.COUNTDOWN
-    ##model.set_clock()
+    model.set_timer(30)
 
 ## cy - sets up the keybinds for the view
 def start() -> None:

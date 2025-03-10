@@ -25,5 +25,5 @@ if __name__ == "__main__":
     while(globe.essentials.gameState > 0):
         view.update()
         controller.update()
-        ##model.update()
+        model.update()
         

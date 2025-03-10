@@ -8,7 +8,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import subprocess
 
-from globe.view import omni_dir
+from globe.view import omni_dir, WIDTH, HEIGHT
 
 def create_splash_screen(root, width=1, height=1, useFactor=True):
     # Get the screen dimensions
@@ -30,7 +30,7 @@ def create_splash_screen(root, width=1, height=1, useFactor=True):
     
     # Load and resize the image
     image = Image.open(omni_dir("logo.jpg"))
-    image = image.resize((int(screenWidth), int(screenHeight)), Image.Resampling.LANCZOS)
+    image = image.resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
     
     # Create and pack the image label

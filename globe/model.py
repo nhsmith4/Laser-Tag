@@ -9,3 +9,6 @@ green_team_scores:int = [10**i for i in range(20)]
 message_board_team = ["alice", "sleepy joe","bluey", "apple pie"]
 
 game_time_remaining = "0:00"
+
+time = None
+timer = 7

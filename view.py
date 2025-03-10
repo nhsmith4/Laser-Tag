@@ -68,12 +68,15 @@ def start() -> None:
 def update() -> None:
     global g_local_state
     printDebug("View update", debug.VIEW | debug.ADVANCED)
+    
     try:
         if(g_local_state != globe.essentials.gameState):
             for frame in gv.win_frames:
                 gv.win_frames[frame].pack_forget()
             g_local_state = globe.essentials.gameState
             gv.win_frames[g_local_state].pack()
+        
+        ##win.update_idletasks()
         win.update()
     except Exception as e:
         print(e)

@@ -8,7 +8,8 @@ import globe
 from PIL import Image, ImageTk
 import subprocess
 
-from globe.view import omni_dir
+from globe.view import omni_dir, WIDTH, HEIGHT
+import model
 
 def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Get the screen dimensions
@@ -33,7 +34,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Load and resize the image
     # image = Image.open("background.jpg")
     image = Image.open(omni_dir("background.jpg"))
-    image = image.resize((int(screenWidth), int(screenHeight)), Image.Resampling.LANCZOS)
+    image = image.resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
     
     # Create and pack the image label
@@ -42,8 +43,8 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     imageLabel.pack(side=TOP, expand=YES)
     
     # Create countdown label
-    countdown.label = Label(countdown, text="30", font=("Arial", 100, "bold"), fg="yellow", bg="black")
-    countdown.label.place(relx=0.5, rely=0.545, anchor=CENTER)
+    label = Label(countdown, text=model.timer, font=("Arial", 100, "bold"), fg="yellow", bg="black")
+    label.place(relx=0.5, rely=0.545, anchor=CENTER)
     
     return countdown
 
@@ -59,7 +60,7 @@ if __name__ == '__main__':
     countdown = create_countdown_screen(root)
     
     # Start 30-second countdown
-    update_countdown(countdown.label, 30, root)
+    #update_countdown(countdown.label, 30, root)
     
     # Run Tkinter main loop
     root.mainloop()
