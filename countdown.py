@@ -31,6 +31,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     countdown.pack(side=TOP, fill=BOTH, expand=YES)
     
     # Load and resize the image
+    # image = Image.open("background.jpg")
     image = Image.open(omni_dir("background.jpg"))
     image = image.resize((int(screenWidth), int(screenHeight)), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
@@ -55,10 +56,10 @@ def update_countdown(label, count, root):
         
 if __name__ == '__main__':
     root = Tk()
-    countdown, countdown_label = create_countdown_screen(root)
+    countdown = create_countdown_screen(root)
     
     # Start 30-second countdown
-    update_countdown(countdown, 30, root)
+    update_countdown(countdown.label, 30, root)
     
     # Run Tkinter main loop
     root.mainloop()
