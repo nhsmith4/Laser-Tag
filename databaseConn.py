@@ -29,4 +29,4 @@ def insert_player(id, codename):
 
 # testing inserting 
 insert_player(1, "PlayerOne")
-insert_player(1, "PlayerTwo")
+insert_player(2, "PlayerTwo")
