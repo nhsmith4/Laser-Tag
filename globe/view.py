@@ -1,3 +1,4 @@
+from sys import platform
 ## cy - global window
 win = None
 win_frames = {}
@@ -18,3 +19,10 @@ WHITE = "#ffffff"
 RED = "#ff0000"
 GREEN = "#00ff00"
 BLUE = "0000ff"
+
+## Function that creates directory based upon OS
+def omni_dir(img:str) -> str:
+    if platform == "linux" or platform == "linux2":
+        return f"./media/{img}"
+    else:
+        return f".\media\{img}"

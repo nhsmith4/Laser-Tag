@@ -6,6 +6,8 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import subprocess
 
+from globe.view import omni_dir
+
 def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Get the screen dimensions
     screenWidth = root.winfo_screenwidth()
@@ -27,7 +29,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     countdown.pack(side=TOP, fill=BOTH, expand=YES)
     
     # Load and resize the image
-    image = Image.open("background.jpg")
+    image = Image.open(omni_dir("background.jpg"))
     image = image.resize((int(screenWidth), int(screenHeight)), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
     
