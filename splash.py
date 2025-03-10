@@ -27,7 +27,7 @@ def create_splash_screen(root, width=1, height=1, useFactor=True):
     splash.pack(side=TOP, fill=BOTH, expand=YES)
     
     # Load and resize the image
-    image = Image.open("logo.jpg")
+    image = Image.open(".\globe\logo.jpg")
     image = image.resize((int(screenWidth), int(screenHeight)), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
     

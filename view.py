@@ -13,6 +13,8 @@ from globe.debug import printDebug
 import splash
 import player_entry_screen
 
+g_local_state = None
+
 
 ## cy - Settings Menu
 def add_settings(window):
@@ -60,11 +62,15 @@ def start() -> None:
 
 ## cy - View update command / updates windows
 def update() -> None:
+    global g_local_state
     printDebug("View update", debug.VIEW | debug.ADVANCED)
     try:
-        for frame in gv.win_frames:
-            gv.win_frames[frame].pack_forget()
-        gv.win_frames[globe.essentials.gameState].pack()
+        print(g_local_state != globe.essentials.gameState)
+        if(g_local_state != globe.essentials.gameState):
+            for frame in gv.win_frames:
+                gv.win_frames[frame].pack_forget()
+            g_local_state = globe.essentials.gameState
+            gv.win_frames[g_local_state].pack()
         win.update()
     except Exception as e:
         print(e)
