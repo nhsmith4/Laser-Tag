@@ -3,6 +3,8 @@
 
 from tkinter import *
 from tkinter import ttk
+import time
+import globe
 from PIL import Image, ImageTk
 import subprocess
 
@@ -42,7 +44,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     countdown_label = Label(countdown, text="30", font=("Arial", 100, "bold"), fg="yellow", bg="black", highlightthickness=0, bd=0)
     countdown_label.place(relx=0.5, rely=0.545, anchor=CENTER)
     
-    return countdown
+    return countdown, countdown_label
 
 def update_countdown(label, count, root):
     if count > 0:
@@ -60,3 +62,4 @@ if __name__ == '__main__':
     
     # Run Tkinter main loop
     root.mainloop()
+
