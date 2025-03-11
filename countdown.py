@@ -11,7 +11,11 @@ import subprocess
 from globe.view import omni_dir, WIDTH, HEIGHT
 import model
 
+gCountdown = None
+
 def create_countdown_screen(root, width=1, height=1, useFactor=True):
+    global gCountdown
+    gCountdown = IntVar(root)
     # Get the screen dimensions
     screenWidth = root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
@@ -41,11 +45,10 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     imageLabel = Label(countdown, image=backgroundImage)
     imageLabel.image = backgroundImage  
     imageLabel.pack(side=TOP, expand=YES)
-    
+
     # Create countdown label
-    label = Label(countdown, text=model.timer, font=("Arial", 100, "bold"), fg="yellow", bg="black")
+    label = Label(countdown, textvariable=gCountdown, font=("Arial", 100, "bold"), fg="yellow", bg="black")
     label.place(relx=0.5, rely=0.545, anchor=CENTER)
-    
     return countdown
 
 def update_countdown(label, count, root):

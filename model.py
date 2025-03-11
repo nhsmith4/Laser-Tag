@@ -65,3 +65,4 @@ def update() -> None:
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
+    globe.model.timer = timer

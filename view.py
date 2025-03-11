@@ -4,6 +4,7 @@ import globe.essentials
 import globe.view
 from globe.view import win
 import globe.view as gv
+import globe.model
 
 import controller
 
@@ -77,6 +78,7 @@ def update() -> None:
             gv.win_frames[g_local_state].pack()
         
         ##win.update_idletasks()
+        countdown.gCountdown.set(globe.model.timer)
         win.update()
     except Exception as e:
         print(e)
