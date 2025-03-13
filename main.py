@@ -4,6 +4,7 @@ import tkinter
 import view
 import model
 import controller
+import globe
 
 #import udp
 
@@ -18,6 +19,8 @@ if __name__ == "__main__":
     view.start()
     controller.start()
     model.start(sys.argv[1:len(sys.argv)])
+    
+    
     
 
     printDebug("Debug Mode Activated")

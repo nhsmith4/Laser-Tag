@@ -3,7 +3,6 @@ import tkinter
 import globe.essentials
 import globe.view
 from globe.view import win
-import globe.view as gv
 import globe.model
 
 import controller
@@ -12,9 +11,11 @@ import globe.debug as debug
 from globe.debug import printDebug
 
 import splash
-import player_entry_screen
+import player_entry
 import countdown
 import game_play
+
+global red_team
 
 g_local_state = None
 
@@ -50,10 +51,12 @@ def start() -> None:
 
     add_settings(win)
 
-    gv.win_frames[globe.essentials.SPLASH] = splash.create_splash_screen(win)
-    gv.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry_screen.create_player_entry_screen(win)
-    gv.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
-    gv.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
+    globe.view.win_frames[globe.essentials.SPLASH] = splash.create_splash_screen(win)
+    globe.view.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry.create_frame(win)
+    globe.view.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
+    globe.view.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
+
+        
 
 
     win.bind_all("<Key>", controller.on_key_press)
@@ -72,13 +75,14 @@ def update() -> None:
     
     try:
         if(g_local_state != globe.essentials.gameState):
-            for frame in gv.win_frames:
-                gv.win_frames[frame].pack_forget()
+            for frame in globe.view.win_frames:
+                globe.view.win_frames[frame].pack_forget()
             g_local_state = globe.essentials.gameState
-            gv.win_frames[g_local_state].pack()
+            globe.view.win_frames[g_local_state].pack()
         
         ##win.update_idletasks()
         countdown.gCountdown.set(globe.model.timer)
+        win.attributes("-fullscreen", globe.view.win_fullscreen)
         win.update()
     except Exception as e:
         print(e)

@@ -2,6 +2,7 @@ from sys import platform
 ## cy - global window
 win = None
 win_frames = {}
+win_fullscreen = False
 
 
 ## cy - settings variables
@@ -26,3 +27,6 @@ def omni_dir(img:str) -> str:
         return f"./media/{img}"
     else:
         return f".\media\{img}"
+
+def toggle_fullscreen():
+    win.attributes("-fullscreen", not win.attributes("-fullscreen"))

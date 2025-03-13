@@ -1,11 +1,16 @@
 import time
 import globe
+import tkinter
 
 import globe.debug as debug
 import globe.model
 from globe.debug import printDebug
 
 timer = 80
+
+global red_hardware
+global red_id
+global red_nick
 
 
 ## cy - Sets the IP address
@@ -21,6 +26,12 @@ def set_timer(sec:int) -> None:
 def get_timer() -> int:
     global timer
     return timer
+
+def set_player():
+    pass
+
+def clear_table():
+    pass
 
 
 ## cy - Sets up virtual world
@@ -66,3 +77,4 @@ def update() -> None:
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
     globe.model.timer = timer
+    

@@ -27,12 +27,12 @@ def create_frame(root):
     left_frame.grid(row=0, column=0, sticky="nsew")
     red_team_label = tk.Label(left_frame, text="Red Team", font=("Arial", 16), bg="red", fg="white")
     red_team_label.pack(pady=20)
-    for id in range(len(globe.model.red_team)):
+    for id in range(20):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_label = tk.Label(player_frame, text=globe.model.red_team[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
+        player_label = tk.Label(player_frame, text="ligma", font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        score_label = tk.Label(player_frame, text=str(globe.model.red_team_scores[id]), font=("Arial", 14), bg="red", fg="white", anchor="e")
+        score_label = tk.Label(player_frame, text=str(0), font=("Arial", 14), bg="red", fg="white", anchor="e")
         score_label.pack(side=tk.RIGHT)
     
     # Right Area (Green Team)
