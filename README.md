@@ -1,32 +1,67 @@
 # Tag SUWY Laser Tag
 This is the README for the program **_PHOTON: The Ultimate Game on Planet Earth._**<br>
-This project was designed and developed by _Team 004_ (niccknamed Tag SUWY).<br>
+This project was designed and developed by _Team 004_ (nicknamed Tag SUWY).<br>
 The project was created during Jim Strother's _CSCE 35103 Software Engineering Spring 2025_ class.
 <br><br>
 Table of Contents:<br>
-&emsp;* [Prerequisites](#prerequisites)<br>
+&emsp;* [Installation & Updating](#installation-and-updating)<br>
 &emsp;* [How to Run](#how-to-run)<br>
 &emsp;* [Contributors](#contributors)<br>
 
-## Prerequisites
+# Installation and Updating
 
-This project was created using *Python v3.9.2* within a Debian Linux Virtual Machine.<br><br>
+## Installation
+
+>[!TIP]
+><br>This program can be installed and run via a shell script. To utilize this feature, download [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory:
+>
+>```./photon.sh --install```
+><br><br>
+>This should install all libraries and packages needed to run the software, as well as download the latest version of the software and execute it.<br>
+>*(Note): As this program is developed, new packages may be required. It is therefore recommended that whenever your program shows a library failure that you redownload the shell script and rerun with the installation flag.*
+
+This software is intended to be run with *Python v3.9.2* within a Debian Linux Virtual Machine.<br>
+
+### Tkinter
 The library *Tkinter* is the primary library used for graphics. If Tkinter is not installed natively on your machine, you can use the following command to install it.<br><br>
 ```sudo apt install python3-tk```
-<br><br>
-The library used for communicating with the database is *psycopg2*. To install *psycopg* onto your device, enter the following command:<br><br>
-```python3 -m venv path/to/venv```
-<br><br>
-```source path/to/venv/bin/activate```
-<br><br>
-```pip install psycopg2-binary```
+<br>
+### Pygame
+The *pygame* package is used for audio playback. This is the following command for installing pygame using *PIP*:<br><br>
+```pip install pygame```<br>
+### Pillow
+The *PIL* library is used to render images. Ensure that Pillow is installed. This *PIP* command can install Pillow onto your machine:<br><br>
+```pip install pillow```
+### Psycopg2
+The library used for communicating with the database is *psycopg2*. To install *psycopg* onto your device, enter the following commands:<br><br>
+```
+python3 -m venv path/to/venv
+source path/to/venv/bin/activate
+pip install psycopg2-binary
+```
+## Updating
+
+>[!TIP]
+><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory:
+>
+>```./photon.sh --update```
+><br><br>
+>This will pull download and execute the latest version of this software.
+
+To update this software, pull down the [main branch](https://github.com/nhsmith4/Laser-Tag/tree/main) of this project.
 
 
 
+# How To Run
+>[!TIP]
+><br>This program can be run via a shell script. To utilize this feature, locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory:
+>
+>```./photon.sh <args>```
+><br><br>
+>All values inside of *\<args\>* will be passed into the program to run. This includes the arguments used for [debugging](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).<br>
+>*(Note): The shell script is intended to be run ***outside*** the *photon* directory. The script will not function properly inside of the directory.*
 
-
-## How To Run
-To run the program, ensure your terminal is within the directory of the project. Once you have navigated to the correct directory, run the following command within your terminal:<br><br>
+To run the program ***manually***, ensure your terminal is within the directory of the project. Once you have navigated to the correct directory, run the following command within your terminal:<br><br>
 ```python3 main.py```<br><br>
 No arguments or other executables are required for this program to run correctly.<br>
 The program is designed to be user-intuitive. However, a list of button functionality and keyboard shortcuts is provided by visiting our [NEED THIS wiki page]().
@@ -34,10 +69,10 @@ The program is designed to be user-intuitive. However, a list of button function
 >[!NOTE]
 ><br>The program includes an additional debug mode for help with locating program errors. Debug mode can be activated by the following command:<br>
 >
->```python3 main.py debug <args>```
+>```python3 main.py debug <flags>```
 ><br><br>
 >The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
-## Contibutors
+# Contibutors
 This project was designed and developed by Team 004, codenamed Tag SUWY. The following are the names and accounts of each member:<br>
 <br>&emsp;&emsp;Nicholas Smith:&emsp;&emsp;[@nhsmith4](https://github.com/nhsmith4)
 <br>&emsp;&emsp;Joseph Umuhoza:&emsp;&nbsp;[@Sahunkuy](https://github.com/Sahunkuy)

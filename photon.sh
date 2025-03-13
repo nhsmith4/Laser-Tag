@@ -13,10 +13,12 @@ install_packages()
 {
 	echo "installing required packages..."
 	mkdir ./photon
+	sudo apt-get install python3-pip
 	sudo apt install python3-tk
 	python3 -m venv path/to/venv
 	source path/to/venv/bin/activate
 	pip install psycopg2-binary
+	pip install pygame
 	
 	update
 }
