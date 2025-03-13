@@ -18,6 +18,7 @@ install_packages()
 	python3 -m venv path/to/venv
 	source path/to/venv/bin/activate
 	pip install psycopg2-binary
+	pip install pillow
 	pip install pygame
 	
 	update
