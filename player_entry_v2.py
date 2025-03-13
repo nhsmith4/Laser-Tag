@@ -1,7 +1,7 @@
 import tkinter as tk
 
-
 import globe
+import databaseConn
 import globe.view
 from globe.view import BLACK, WHITE, RED, GREEN, BLUE
 import globe.model
@@ -20,6 +20,14 @@ def create_header(root, color):
 
 def test():
     print("test")
+
+def submit_player(entry_id, entry_nickname):
+    player_id = entry_id.get()
+    player_nickname = entry_nickname.get()
+    if player_id and player_nickname:
+        databaseConn.insert_player(player_id, player_nickname)
+    else:
+        print("id and nickname required")
 
 def create_frame(root):
     ## master frame
@@ -47,8 +55,9 @@ def create_frame(root):
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
         player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=None)
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        
-    
+        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=lambda id=player_id, nick=player_nickname: submit_player(id, nick))
+        submit_button.pack(side=tk.LEFT, padx=5)
+
     # Right Area (Green Team)
     right_frame = tk.Frame(main_frame, bg="green")
     right_frame.grid(row=0, column=1, sticky="nsew")
@@ -64,16 +73,16 @@ def create_frame(root):
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
         player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=None)
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
+        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=lambda id=player_id, nick=player_nickname: submit_player(id, nick))
+        submit_button.pack(side=tk.LEFT, padx=5)
 
     ## Button Frame (Bottom Frame)
     bottom_frame = tk.Frame(main_frame, bg="black")
     bottom_frame.grid(row=1, column=0, sticky="nsew")
     f5_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f5>\nStart\nGame", command=test).pack(side=tk.LEFT, padx=1)
     f12_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f12>\nClear\nTeams", command=test).pack(side=tk.LEFT, padx=1)
-    null_frame = tk.Frame(main_frame, bg="black").grid(row=1,column=1, sticky="nsew")
+    null_frame = tk.Frame(main_frame, bg="black").grid(row=1, column=1, sticky="nsew")
 
-
-        
     return main_frame
 
 if __name__ == "__main__":
