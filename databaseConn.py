@@ -44,4 +44,4 @@ def insert_player(id, codename):
 if __name__ == "__main__":
     insert_player(1,"player1")
     insert_player(1,"player2")
-    'insert_player(2,"player3")
+    insert_player(2,"player3")
