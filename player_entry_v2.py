@@ -27,7 +27,7 @@ def submit_player(entry_id, entry_nickname):
     if player_id and player_nickname:
         databaseConn.insert_player(player_id, player_nickname)
     else:
-        print("id and nickname required")
+        printDebug("Player id and nickname required")
 
 def create_frame(root):
     ## master frame
@@ -90,5 +90,6 @@ if __name__ == "__main__":
     root.title("Game Play Screen")
     root.geometry(globe.view.RESOLUTION)
     frame = create_frame(root)
+    root.attributes("-fullscreen", True) 
     frame.pack()
     root.mainloop()
