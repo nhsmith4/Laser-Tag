@@ -22,7 +22,7 @@ BLUE = "0000ff"
 
 ## Function that creates directory based upon OS
 def omni_dir(img:str) -> str:
-    if platform == "linux" or platform == "linux2":
+    if platform == "linux" or platform == "linux2" or platform == "darwin":
         return f"./media/{img}"
     else:
         return f".\media\{img}"
