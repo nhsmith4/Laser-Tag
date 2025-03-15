@@ -11,7 +11,7 @@ import globe.debug as debug
 from globe.debug import printDebug
 
 import splash
-import player_entry
+import player_entry_v2
 import countdown
 import game_play
 
@@ -52,7 +52,7 @@ def start() -> None:
     add_settings(win)
 
     globe.view.win_frames[globe.essentials.SPLASH] = splash.create_splash_screen(win)
-    globe.view.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry.create_frame(win)
+    globe.view.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry_v2.create_frame(win)
     globe.view.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
     globe.view.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
 
