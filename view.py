@@ -56,10 +56,12 @@ def start() -> None:
     globe.view.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
     globe.view.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
 
+
         
 
 
     win.bind_all("<Key>", controller.on_key_press)
+    win.bind("WM_DELETE_WINDOW", win.destroy)
 
     win.update()
 
@@ -78,7 +80,7 @@ def update() -> None:
             for frame in globe.view.win_frames:
                 globe.view.win_frames[frame].pack_forget()
             g_local_state = globe.essentials.gameState
-            globe.view.win_frames[g_local_state].pack()
+            globe.view.win_frames[g_local_state].pack(fill=tkinter.BOTH, expand=True)
         
         ##win.update_idletasks()
         countdown.gCountdown.set(globe.model.timer)

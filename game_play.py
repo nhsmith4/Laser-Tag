@@ -8,10 +8,17 @@ import globe.model
 import globe.debug as debug
 from globe.debug import printDebug
 
+globe.model.red_team = None
+
 
 def create_frame(root):
     frame_height = globe.view.HEIGHT
     frame_width = globe.view.WIDTH // 9
+
+    globe.model.red_nick = [tk.StringVar(root) for i in range(20)]
+    globe.model.red_team_scores = [tk.IntVar(root) for i in range(20)]
+    globe.model.green_nick = [tk.StringVar(root) for i in range(20)]
+    globe.model.green_team_scores = [tk.IntVar(root) for i in range(20)]
 
     ## master frame
     main_frame = tk.Frame(root)
@@ -30,9 +37,9 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_label = tk.Label(player_frame, text="ligma", font=("Arial", 14), bg="red", fg="white", anchor="w")
+        player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        score_label = tk.Label(player_frame, text=str(0), font=("Arial", 14), bg="red", fg="white", anchor="e")
+        score_label = tk.Label(player_frame, textvariable=globe.model.red_team_scores[id], font=("Arial", 14), bg="red", fg="white", anchor="e")
         score_label.pack(side=tk.RIGHT)
     
     # Right Area (Green Team)
@@ -40,12 +47,12 @@ def create_frame(root):
     right_frame.grid(row=0, column=2, sticky="nsew")
     green_team_label = tk.Label(right_frame, text="Green Team", font=("Arial", 16), bg="green", fg="white")
     green_team_label.pack(pady=20)
-    for id in range(len(globe.model.green_team)):
+    for id in range(20):
         player_frame = tk.Frame(right_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_label = tk.Label(player_frame, text=globe.model.green_team[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
+        player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        score_label = tk.Label(player_frame, text=str(globe.model.green_team_scores[id]), font=("Arial", 14), bg="green", fg="white", anchor="e")
+        score_label = tk.Label(player_frame, textvariable=globe.model.green_team_scores[id], font=("Arial", 14), bg="green", fg="white", anchor="e")
         score_label.pack(side=tk.RIGHT)
 
     # Middle Area (Message Area)

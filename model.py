@@ -30,8 +30,12 @@ def get_timer() -> int:
 def set_player():
     pass
 
-def clear_table():
-    pass
+def clear_players():
+    printDebug("Clearing Players")
+    for i in range(20):
+            globe.model.red_nick[i].set("")
+            globe.model.green_nick[i].set("")
+    printDebug("Cleared Players")
 
 
 ## cy - Sets up virtual world
@@ -77,4 +81,8 @@ def update() -> None:
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
     globe.model.timer = timer
+    if (globe.model.red_team_scores[0].get()):
+        globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)
+    else:
+        globe.model.red_team_scores[0].set(1)
     
