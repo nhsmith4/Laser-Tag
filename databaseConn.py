@@ -17,11 +17,12 @@ def player_exists(id):
     conn = get_connections()
     if conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM players WHERE id = %s", (id,))
+        cursor.execute("SELECT * FROM players WHERE id = %s", (id,))
         result = cursor.fetchone()
+        print(result)
         conn.close()
         if result:
-            return result[0]
+            return result[1]
         else:
             return None
     return None
@@ -49,3 +50,5 @@ if __name__ == "__main__":
     insert_player(1,"player1")
     insert_player(1,"player2")
     insert_player(2,"player3")
+    print(player_exists(1))
+    print(player_exists(2))
