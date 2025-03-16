@@ -51,10 +51,17 @@ def start() -> None:
 
     add_settings(win)
 
+    globe.model.red_nick = [tkinter.StringVar(win) for i in range(20)]
+    globe.model.red_team_scores = [tkinter.IntVar(win) for i in range(20)]
+    globe.model.green_nick = [tkinter.StringVar(win) for i in range(20)]
+    globe.model.green_team_scores = [tkinter.IntVar(win) for i in range(20)]
+
     globe.view.win_frames[globe.essentials.SPLASH] = splash.create_splash_screen(win)
     globe.view.win_frames[globe.essentials.PLAYER_ENTRY] = player_entry_v2.create_frame(win)
     globe.view.win_frames[globe.essentials.COUNTDOWN] = countdown.create_countdown_screen(win)
     globe.view.win_frames[globe.essentials.GAME_PLAY] = game_play.create_frame(win)
+
+    
 
 
         
