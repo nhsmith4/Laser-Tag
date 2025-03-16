@@ -24,10 +24,20 @@ def test():
 def submit_player(entry_id, entry_nickname):
     player_id = entry_id.get()
     player_nickname = entry_nickname.get()
-    if player_id and player_nickname:
-        databaseConn.insert_player(player_id, player_nickname)
+
+    if player_id:
+        existing_name = entry_nickname.get()
+        if existing_name: 
+            entry_nickname.delete(0, tk.END)  
+            entry_nickname.insert(0, existing_name) 
+        elif player_id and player_nickname:     
+            databaseConn.insert_player(player_id, player_nickname)
+        else:
+            printDebug("Player ID and nickname required")
     else:
-        printDebug("Player id and nickname required")
+        printDebug("Player id")
+
+
 
 def create_frame(root):
     ## master frame

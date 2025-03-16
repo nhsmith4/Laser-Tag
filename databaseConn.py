@@ -13,15 +13,19 @@ def get_connections():
         return None
 
 # Checking if the player ID exists in the database
-def player_exists(id) -> bool:
+def player_exists(id):
     conn = get_connections()
     if conn:
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM players WHERE id = %s", (id,))
-        count = cursor.fetchone()[0]
+        result = cursor.fetchone()
         conn.close()
-        return count > 0
-    return False
+        if result:
+            return result[0]
+        else:
+            return None
+    return None
+
 
 # Inserting a player into the database
 def insert_player(id, codename):
