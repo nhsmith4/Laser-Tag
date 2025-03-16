@@ -27,9 +27,9 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     y = (screenHeight / 2) - (winHeight / 2)
     ##root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
     
-    # Cover the whole screen
-    ##root.overrideredirect(True)
-    ##root.lift()
+    # # Cover the whole screen
+    # root.overrideredirect(True)
+    # root.lift()
     
     # Create the countdown screen frame
     countdown = Frame(root)
@@ -38,7 +38,7 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Load and resize the image
     # image = Image.open("background.jpg")
     image = Image.open(omni_dir("background.jpg"))
-    image = image.resize((WIDTH, HEIGHT), Image.Resampling.LANCZOS)
+    image = image.resize((screenWidth, screenHeight), Image.Resampling.LANCZOS)
     backgroundImage = ImageTk.PhotoImage(image)
     
     # Create and pack the image label
