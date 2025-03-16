@@ -17,6 +17,10 @@ def on_f5_click() -> None:
     else:
         model.set_timer(30)
 
+def on_f12_click() -> None:
+    pass
+        
+
 ## cy - sets up the keybinds for the view
 def start() -> None:
     return
@@ -44,16 +48,28 @@ def on_key_press(event) -> None:
 
     if (key == "F11"):
         globe.view.win_fullscreen = ~globe.view.win_fullscreen
-    if (key == "7"):
-        player_entry.set_nick(7, "turtle")
 
     if (globe.essentials.gameState == globe.essentials.PLAYER_ENTRY):
         if (key == "F5"):
             on_f5_click()
             pass
-        if (key == "F12"):
-            model.clear_table()
+
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
         if (getDebug(debug.CONTROLLER) and key == "F5"):
             on_f5_click(3)
             pass
+    if (key == "F7"):
+        i = 7
+        globe.model.red_nick[0].set("charles")
+        globe.model.red_nick[1].set("Joseph")
+        globe.model.red_nick[2].set("Caleb")
+        globe.model.red_nick[3].set("Nick")
+        globe.model.red_nick[i].set("germany")
+        globe.model.green_nick[0].set("selrach")
+        globe.model.green_nick[1].set("hpesoj")
+        globe.model.green_nick[2].set("balec")
+        globe.model.green_nick[3].set("kcin")
+        
+    if (key == "F6"):
+        model.clear_players()
+        pass
