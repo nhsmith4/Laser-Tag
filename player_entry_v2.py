@@ -7,6 +7,7 @@ from globe.view import BLACK, WHITE, RED, GREEN, BLUE
 import globe.model
 import globe.debug as debug
 from globe.debug import printDebug
+import controller
 
 def create_header(root, color):
     header_frame = tk.Frame(root, bg=color)
@@ -88,8 +89,8 @@ def create_frame(root):
     ## Button Frame (Bottom Frame)
     bottom_frame = tk.Frame(main_frame, bg="black")
     bottom_frame.grid(row=1, column=0, sticky="nsew")
-    f5_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f5>\nStart\nGame", command=test).pack(side=tk.LEFT, padx=1)
-    f12_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f12>\nClear\nTeams", command=test).pack(side=tk.LEFT, padx=1)
+    f5_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f5>\nStart\nGame", command=controller.on_f5_click).pack(side=tk.LEFT, padx=1)
+    f12_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f12>\nClear\nTeams", command=controller.on_f12_click).pack(side=tk.LEFT, padx=1)
     null_frame = tk.Frame(main_frame, bg="black").grid(row=1, column=1, sticky="nsew")
 
     return main_frame
