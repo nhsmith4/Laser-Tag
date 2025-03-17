@@ -6,6 +6,7 @@ import globe.debug as debug
 import globe.model
 from globe.debug import printDebug
 
+import udp
 import databaseConn
 
 timer = 80
@@ -42,6 +43,7 @@ def set_players():
         else:
             printDebug("Player ID and nickname required!!!")
             tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+        udp.udp_send(red_hardware[i])
         player_id = globe.model.green_id[i].get()
         player_nick = globe.model.green_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
@@ -51,18 +53,18 @@ def set_players():
             databaseConn.insert_player(player_id, player_nick)
         else:
             printDebug("Player ID and nickname required!!!")
-            tkinter.messagebox.Message(None, title="ERROR",message="Player ID and nickname required!!!")
+        udp.udp_send(green_hardware[i])
 
 
 
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            globe.model.red_hardware[i].set(None)
-            globe.model.red_id[i].set(None)
+            globe.model.red_hardware[i].set('')
+            globe.model.red_id[i].set('')
             globe.model.red_nick[i].set("")
-            globe.model.green_hardware[i].set(None)
-            globe.model.green_id[i].set(None)
+            globe.model.green_hardware[i].set('')
+            globe.model.green_id[i].set('')
             globe.model.green_nick[i].set("")
     printDebug("Cleared Players")
 
@@ -70,6 +72,7 @@ def clear_players():
 ## cy - Sets up virtual world
 def start(args:list=None) -> None:
     globe.model.time = time.time()
+    udp.establish_client()
     for arg in args:
         if arg == "debug":
             debug.flag |= debug.DEBUG
@@ -109,6 +112,7 @@ def update() -> None:
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
+            udp.udp_send(202)
     globe.model.timer = timer
     if (globe.model.red_team_scores[0].get()):
         globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)

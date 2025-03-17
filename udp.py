@@ -14,8 +14,8 @@ UDPClient = None
 def udp_send(message:str, addr:tuple=None) -> None:
     global UDPClient
     srvrAddrPort = (globe.essentials.ip_addr, SERVER_PORT) if (addr == None) else addr
-    UDPClient.sendto(str.encode(message), srvrAddrPort)
-    printDebug("Sent message {} to server with address {}:{}".format(message, globe.essentials.ip_addr, SERVER_PORT), debug.UDP)
+    UDPClient.sendto(str.encode(str(message)), srvrAddrPort)
+    printDebug("Sent message {} to server with address {}:{}".format(str(message), globe.essentials.ip_addr, SERVER_PORT), debug.UDP)
 
     
 

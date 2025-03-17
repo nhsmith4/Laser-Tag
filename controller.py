@@ -59,7 +59,7 @@ def on_key_press(event) -> None:
 
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
         if (getDebug(debug.CONTROLLER) and key == "F5"):
-            on_f5_click(3)
+            on_f5_click()
             pass
     if (key == "F7"):
         i = 7
