@@ -1,5 +1,6 @@
 import psycopg2
 import sys
+from globe.debug import printDebug
 
 # Creating a connection to the database
 def get_connections():
@@ -9,15 +10,15 @@ def get_connections():
             user="student",
         )
     except Exception as e:
-        print(f"Error: {e}")  
+        printDebug(f"Error: {e}")  
         return None
 
 # Checking if the player ID exists in the database
-def player_exists(id):
+def player_exists(entry_id):
     conn = get_connections()
     if conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM players WHERE id = %s", (id,))
+        cursor.execute("SELECT * FROM players WHERE id = %s;" % entry_id)
         result = cursor.fetchone()
         print(result)
         conn.close()

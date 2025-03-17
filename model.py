@@ -32,7 +32,7 @@ def get_timer() -> int:
 def set_players():
     id_base = {}
     for i in range(20):
-        player_id = globe.model.red_id[i].get()
+        player_id = int(globe.model.red_id[i].get())
         player_nick = globe.model.red_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
         if inDatabase:
@@ -58,7 +58,11 @@ def set_players():
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
+            globe.model.red_hardware[i].set(None)
+            globe.model.red_id[i].set(None)
             globe.model.red_nick[i].set("")
+            globe.model.green_hardware[i].set(None)
+            globe.model.green_id[i].set(None)
             globe.model.green_nick[i].set("")
     printDebug("Cleared Players")
 

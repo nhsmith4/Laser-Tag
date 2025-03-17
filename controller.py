@@ -46,7 +46,7 @@ def on_key_press(event) -> None:
     key = event.keysym
     printDebug("Key pressed: " + key, debug.CONTROLLER)
 
-    if (key == "TAB"):
+    if (key == "grave"):
         model.set_players()
 
     if (key == "F11"):
