@@ -59,13 +59,13 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_hardware = tk.Entry(player_frame, text=id, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=None)
+        player_hardware = tk.Entry(player_frame, text=id, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.red_hardware[id])
         player_hardware.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=None)
+        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.red_id[id])
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
-        player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=None)
+        player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=globe.model.red_nick[id])
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=lambda id=player_id, nick=player_nickname: submit_player(id, nick))
+        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=model.set_players)
         submit_button.pack(side=tk.LEFT, padx=5)
 
     # Right Area (Green Team)

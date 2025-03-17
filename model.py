@@ -6,6 +6,8 @@ import globe.debug as debug
 import globe.model
 from globe.debug import printDebug
 
+import databaseConn
+
 timer = 80
 
 global red_hardware
@@ -27,8 +29,21 @@ def get_timer() -> int:
     global timer
     return timer
 
-def set_player():
-    pass
+def set_players():
+    id_base = {}
+    for i in range(20):
+        player_id = red_id[i].get()
+        player_nick = red_nick[i].get()
+        inDatabase = databaseConn.player_exists(player_id)
+        if inDatabase:
+            red_nick[i].set(inDatabase)
+        elif player_id and player_nick:
+            databaseConn.insert_player(player_id, player_nick)
+        else:
+            printDebug("Player ID and nickname required!!!")
+            tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+
+
 
 def clear_players():
     printDebug("Clearing Players")

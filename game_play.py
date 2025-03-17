@@ -15,10 +15,7 @@ def create_frame(root):
     frame_height = globe.view.HEIGHT
     frame_width = globe.view.WIDTH // 9
 
-    globe.model.red_nick = [tk.StringVar(root) for i in range(20)]
-    globe.model.red_team_scores = [tk.IntVar(root) for i in range(20)]
-    globe.model.green_nick = [tk.StringVar(root) for i in range(20)]
-    globe.model.green_team_scores = [tk.IntVar(root) for i in range(20)]
+    
 
     ## master frame
     main_frame = tk.Frame(root)
