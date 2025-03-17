@@ -18,7 +18,7 @@ def on_f5_click() -> None:
         model.set_timer(30)
 
 def on_f12_click() -> None:
-    pass
+    model.clear_players()
         
 
 ## cy - sets up the keybinds for the view
@@ -70,6 +70,6 @@ def on_key_press(event) -> None:
         globe.model.green_nick[2].set("balec")
         globe.model.green_nick[3].set("kcin")
         
-    if (key == "F6"):
+    if (key == "F12"):
         model.clear_players()
         pass
