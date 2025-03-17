@@ -8,6 +8,7 @@ import globe.model
 import globe.debug as debug
 from globe.debug import printDebug
 import controller
+import model
 
 def create_header(root, color):
     header_frame = tk.Frame(root, bg=color)
@@ -77,13 +78,13 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(right_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=None)
+        player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.green_hardware[id])
         player_hardware.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=None)
+        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.green_id[id])
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
-        player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=None)
+        player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=globe.model.green_nick[id])
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=lambda id=player_id, nick=player_nickname: submit_player(id, nick))
+        submit_button = tk.Button(player_frame, text="submit", font=("Arial", 10), command=model.set_players)
         submit_button.pack(side=tk.LEFT, padx=5)
 
     ## Button Frame (Bottom Frame)

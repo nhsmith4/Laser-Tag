@@ -46,6 +46,9 @@ def on_key_press(event) -> None:
     key = event.keysym
     printDebug("Key pressed: " + key, debug.CONTROLLER)
 
+    if (key == "TAB"):
+        model.set_players()
+
     if (key == "F11"):
         globe.view.win_fullscreen = ~globe.view.win_fullscreen
 
