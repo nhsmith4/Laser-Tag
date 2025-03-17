@@ -28,7 +28,7 @@ This software is intended to be run with *Python v3.9.2* within a Debian Linux V
 ## Updating
 
 >[!TIP]
-><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
+><br>It is recommended to update this program via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
 >
 >```./photon.sh --update```
 ><br><br>
