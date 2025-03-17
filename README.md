@@ -25,6 +25,17 @@ Table of Contents:<br>
 
 This software is intended to be run with *Python v3.9.2* within a Debian Linux Virtual Machine.<br>
 
+## Updating
+
+>[!TIP]
+><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
+>
+>```./photon.sh --update```
+><br><br>
+>This will pull download and execute the latest version of this software.
+
+To update this software, pull down the [main branch](https://github.com/nhsmith4/Laser-Tag/tree/main) of this project.
+
 ### Tkinter
 The library *Tkinter* is the primary library used for graphics. If Tkinter is not installed natively on your machine, you can use the following command to install it.<br><br>
 ```sudo apt install python3-tk```
@@ -42,18 +53,6 @@ python3 -m venv path/to/venv
 source path/to/venv/bin/activate
 pip install psycopg2-binary
 ```
-## Updating
-
->[!TIP]
-><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
->
->```./photon.sh --update```
-><br><br>
->This will pull download and execute the latest version of this software.
-
-To update this software, pull down the [main branch](https://github.com/nhsmith4/Laser-Tag/tree/main) of this project.
-
-
 
 # How To Run
 >[!TIP]
