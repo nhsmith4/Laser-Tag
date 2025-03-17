@@ -43,7 +43,7 @@ def set_players():
         else:
             printDebug("Player ID and nickname required!!!")
             tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
-        udp.udp_send(red_hardware[i])
+        udp.udp_send(globe.model.red_hardware[i])
         player_id = globe.model.green_id[i].get()
         player_nick = globe.model.green_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
@@ -53,7 +53,7 @@ def set_players():
             databaseConn.insert_player(player_id, player_nick)
         else:
             printDebug("Player ID and nickname required!!!")
-        udp.udp_send(green_hardware[i])
+        udp.udp_send(globe.model.green_hardware[i])
 
 
 
