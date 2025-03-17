@@ -13,7 +13,7 @@ Table of Contents:<br>
 ## Installation
 
 >[!TIP]
-><br>This program can be installed and run via a shell script. To utilize this feature, first download [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following commands within its directory:
+><br>This program can be installed and run via a shell script. To utilize this feature, first download [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following commands within its directory: (You may have to edit photon.sh permissions by right clicking it, going to properties, then permissions, and click the checkmark to allow the file to run as a program)
 >
 >```
 >chmod +x photon.sh
@@ -45,7 +45,7 @@ pip install psycopg2-binary
 ## Updating
 
 >[!TIP]
-><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: (You may have to edit its permissions by right clicking it, going to properties, then permissions, and click the checkmark to allow the file to run as a program)
+><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
 >
 >```./photon.sh --update```
 ><br><br>
@@ -67,7 +67,7 @@ To update this software, pull down the [main branch](https://github.com/nhsmith4
 To run the program ***manually***, ensure your terminal is within the directory of the project. Once you have navigated to the correct directory, run the following command within your terminal:<br><br>
 ```python3 main.py```<br><br>
 No arguments or other executables are required for this program to run correctly.<br>
-The program is designed to be user-intuitive. However, a list of button functionality and keyboard shortcuts is provided by visiting our [NEED THIS wiki page]().
+The program is designed to be user-intuitive. However, a list of button functionality and keyboard shortcuts is provided by visiting our [game functionality and controls page](https://github.com/nhsmith4/Laser-Tag/wiki/Controls).
 
 >[!NOTE]
 ><br>The program includes an additional debug mode for help with locating program errors. Debug mode can be activated by the following command:<br>
