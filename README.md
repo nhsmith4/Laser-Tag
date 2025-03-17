@@ -13,7 +13,7 @@ Table of Contents:<br>
 ## Installation
 
 >[!TIP]
-><br>This program can be installed and run via a shell script. To utilize this feature, first download [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following commands within its directory:
+><br>This program can be installed and run via a shell script. To utilize this feature, first download [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following commands within its directory: (You may have to edit photon.sh permissions by right clicking it, going to properties, then permissions, and click the checkmark to allow the file to run as a program)
 >
 >```
 >chmod +x photon.sh
@@ -45,7 +45,7 @@ pip install psycopg2-binary
 ## Updating
 
 >[!TIP]
-><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: (You may have to edit its permissions by right clicking it, going to properties, then permissions, and click the checkmark to allow the file to run as a program)
+><br>This program can be updated via a shell script. To utilize this feature, download/locate [photon.sh](https://github.com/nhsmith4/Laser-Tag/blob/main/photon.sh) and execute the following command within its directory: 
 >
 >```./photon.sh --update```
 ><br><br>
