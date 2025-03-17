@@ -55,6 +55,8 @@ def start() -> None:
     globe.model.red_id = [tkinter.StringVar(win) for i in range(20)]
     globe.model.red_nick = [tkinter.StringVar(win) for i in range(20)]
     globe.model.red_team_scores = [tkinter.IntVar(win) for i in range(20)]
+    globe.model.green_hardware = [tkinter.StringVar(win) for i in range(20)]
+    globe.model.green_id = [tkinter.StringVar(win) for i in range(20)]
     globe.model.green_nick = [tkinter.StringVar(win) for i in range(20)]
     globe.model.green_team_scores = [tkinter.IntVar(win) for i in range(20)]
 
