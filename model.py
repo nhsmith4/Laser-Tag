@@ -33,45 +33,42 @@ def get_timer() -> int:
 
 def set_players():
     id_base = {}
-
     for i in range(20):
         ## red team
-        player_id = globe.model.red_id[i].get()
-
-        ## check if player is already used
-        if id_base.get(player_id) is not None:
-            tkinter.messagebox.showwarning("Duplicate User", f"ID {player_id} has already been inserted!!!")
+        player_id:int = globe.model.red_id[i].get()
+        if player_id in id_base.keys():
             clear_red(i)
+            tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
+            continue
+        id_base[player_id] = 'r'
+        inDatabase:str = databaseConn.player_exists(player_id)
+        if inDatabase:
+            globe.model.red_nick[i].set(inDatabase)
         else:
-            id_base[player_id] = 'r'
-            player_nick = globe.model.red_nick[i].get()
-            inDatabase = databaseConn.player_exists(player_id)
-            if inDatabase:
-                globe.model.red_nick[i].set(inDatabase)
-            elif player_id and player_nick:
+            player_nick:str = globe.model.red_nick[i].get()
+            if player_nick.replace(" ", "") != "":
                 databaseConn.insert_player(player_id, player_nick)
             else:
-                printDebug("Player ID and nickname required!!!")
-                tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+                tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
 
-            udp.udp_send(globe.model.red_hardware[i])
-        player_id = globe.model.green_id[i].get()
-        if id_base.get(player_id) is not None:
-            tkinter.messagebox.showwarning("Duplicate User", f"ID {player_id} has already been inserted!!!")
+    for i in range(20):
+        ## green team
+        player_id:int = globe.model.green_id[i].get()
+        if player_id in id_base.keys():
             clear_green(i)
+            tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
+            continue
+        id_base[player_id] = 'g'
+        inDatabase:str = databaseConn.player_exists(player_id)
+        if inDatabase:
+            globe.model.green_nick[i].set(inDatabase)
         else:
-            player_nick = globe.model.green_nick[i].get()
-            inDatabase = databaseConn.player_exists(player_id)
-            if inDatabase:
-                globe.model.green_nick[i].set(inDatabase)
-            elif player_id and player_nick:
+            player_nick:str = globe.model.green_nick[i].get()
+            if player_nick.replace(" ", "") != "":
                 databaseConn.insert_player(player_id, player_nick)
             else:
-                printDebug("Player ID and nickname required!!!")
-                tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
-            udp.udp_send(globe.model.green_hardware[i])
+                tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
 
-        
 
     '''
     for i in range(20):
