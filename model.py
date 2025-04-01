@@ -33,10 +33,52 @@ def get_timer() -> int:
 
 def set_players():
     id_base = {}
+
+    for i in range(20):
+        ## red team
+        player_id = globe.model.red_id[i].get()
+
+        ## check if player is already used
+        if id_base.get(player_id) is not None:
+            tkinter.messagebox.showwarning("Duplicate User", f"ID {player_id} has already been inserted!!!")
+            clear_red(i)
+        else:
+            id_base[player_id] = 'r'
+            player_nick = globe.model.red_nick[i].get()
+            inDatabase = databaseConn.player_exists(player_id)
+            if inDatabase:
+                globe.model.red_nick[i].set(inDatabase)
+            elif player_id and player_nick:
+                databaseConn.insert_player(player_id, player_nick)
+            else:
+                printDebug("Player ID and nickname required!!!")
+                tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+
+            udp.udp_send(globe.model.red_hardware[i])
+        player_id = globe.model.green_id[i].get()
+        if id_base.get(player_id) is not None:
+            tkinter.messagebox.showwarning("Duplicate User", f"ID {player_id} has already been inserted!!!")
+            clear_green(i)
+        else:
+            player_nick = globe.model.green_nick[i].get()
+            inDatabase = databaseConn.player_exists(player_id)
+            if inDatabase:
+                globe.model.green_nick[i].set(inDatabase)
+            elif player_id and player_nick:
+                databaseConn.insert_player(player_id, player_nick)
+            else:
+                printDebug("Player ID and nickname required!!!")
+                tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+            udp.udp_send(globe.model.green_hardware[i])
+
+        
+
+    '''
     for i in range(20):
         player_id = globe.model.red_id[i].get()
         if player_id in id_base:
             clear_player(i)
+            continue
         id_base[player_id] = True
         player_nick = globe.model.red_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
@@ -57,13 +99,16 @@ def set_players():
             databaseConn.insert_player(player_id, player_nick)
         else:
             printDebug("Player ID and nickname required!!!")
-        udp.udp_send(globe.model.green_hardware[i])
+            tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+        udp.udp_send(globe.model.green_hardware[i])'''
 
 
-def clear_player(id) -> None:
+def clear_red(id) -> None:
     globe.model.red_hardware[id].set('')
     globe.model.red_id[id].set('')
     globe.model.red_nick[id].set("")
+
+def clear_green(id) -> None:
     globe.model.green_hardware[id].set('')
     globe.model.green_id[id].set('')
     globe.model.green_nick[id].set("")
@@ -71,7 +116,8 @@ def clear_player(id) -> None:
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            clear_player(id)
+            clear_red(id)
+            clear_green(id)
     printDebug("Cleared Players")
 
 
