@@ -15,22 +15,23 @@ def get_connections():
 
 # Checking if the player ID exists in the database
 def player_exists(entry_id):
-
-    if entry_id.isdigit():
-        conn = get_connections()
-        if conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT * FROM players WHERE id = %s;" % entry_id)
-            result = cursor.fetchone()
-            print(result)
-            conn.close()
-            if result:
-                return result[1]
-            else:
-                return None
+    try:
+        int(entry_id)
+    except:
         return None
-    else:
-        print("printDebug")
+    conn = get_connections()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM players WHERE id = %s;" % entry_id)
+        result = cursor.fetchone()
+        print(result)
+        conn.close()
+        if result:
+            return result[1]
+        else:
+            return None
+    return None
+ 
 
 
 # Inserting a player into the database
