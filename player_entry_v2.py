@@ -20,9 +20,6 @@ def create_header(root, color):
     nick_label = tk.Label(header_frame, text="Player Nickname", font=("Arial", 14), bg=color, fg="white", anchor="w")
     nick_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
 
-def test():
-    print("test")
-
 def submit_player(entry_id, entry_nickname):
     player_id = entry_id.get()
     player_nickname = entry_nickname.get()
@@ -45,6 +42,8 @@ def create_frame(root):
     main_frame = tk.Frame(root)
     main_frame.pack(fill=tk.BOTH, expand=True)
 
+    validation = root.register(globe.view.is_digit)
+
     main_frame.columnconfigure(0, weight=1)
     main_frame.columnconfigure(1, weight=1)
 
@@ -60,9 +59,9 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_hardware = tk.Entry(player_frame, text=id, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.red_hardware[id])
+        player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.red_hardware[id])
         player_hardware.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.red_id[id])
+        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.red_id[id])
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
         player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=globe.model.red_nick[id])
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
@@ -78,9 +77,9 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(right_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.green_hardware[id])
+        player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.green_hardware[id])
         player_hardware.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", width=2, relief=tk.SUNKEN, textvariable=globe.model.green_id[id])
+        player_id = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.green_id[id])
         player_id.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=10)
         player_nickname = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", relief=tk.SUNKEN, textvariable=globe.model.green_nick[id])
         player_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
@@ -89,10 +88,9 @@ def create_frame(root):
 
     ## Button Frame (Bottom Frame)
     bottom_frame = tk.Frame(main_frame, bg="black")
-    bottom_frame.grid(row=1, column=0, sticky="nsew")
-    f5_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f5>\nStart\nGame", command=controller.on_f5_click).pack(side=tk.LEFT, padx=1)
-    f12_butt = tk.Button(bottom_frame, bg="black", fg="white", activebackground="white", activeforeground="black", font=("Arial", 12), width=10, height=10, text="<f12>\nClear\nTeams", command=controller.on_f12_click).pack(side=tk.LEFT, padx=1)
-    null_frame = tk.Frame(main_frame, bg="black").grid(row=1, column=1, sticky="nsew")
+    bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
+    f5_butt = tk.Button(bottom_frame, fg="white", bg="black", height=20, width=11, borderwidth=5, relief="raised", font=("Arial", 12), text="<f5>\nStart\nGame", command=controller.on_f5_click).pack(side=tk.LEFT, padx=1)
+    f12_butt = tk.Button(bottom_frame, fg="white", bg="black", height=20, width=11, borderwidth=5, relief="raised", font=("Arial", 12), text="<f12>\nClear\nTeams", command=controller.on_f12_click).pack(side=tk.LEFT, padx=1)
 
     return main_frame
 

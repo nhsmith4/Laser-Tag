@@ -28,5 +28,8 @@ def omni_dir(img:str) -> str:
     else:
         return f".\\media\\{img}"
 
-def toggle_fullscreen():
+def toggle_fullscreen() -> None:
     win.attributes("-fullscreen", not win.attributes("-fullscreen"))
+
+def is_digit(char:chr) -> bool:
+        return char.isdigit()

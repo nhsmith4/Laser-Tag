@@ -1,6 +1,7 @@
 import time
 import globe
 import tkinter
+import tkinter.messagebox
 
 import globe.debug as debug
 import globe.model
@@ -34,6 +35,9 @@ def set_players():
     id_base = {}
     for i in range(20):
         player_id = globe.model.red_id[i].get()
+        if player_id in id_base:
+            clear_player(i)
+        id_base[player_id] = True
         player_nick = globe.model.red_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
         if inDatabase:
@@ -56,16 +60,18 @@ def set_players():
         udp.udp_send(globe.model.green_hardware[i])
 
 
+def clear_player(id) -> None:
+    globe.model.red_hardware[id].set('')
+    globe.model.red_id[id].set('')
+    globe.model.red_nick[id].set("")
+    globe.model.green_hardware[id].set('')
+    globe.model.green_id[id].set('')
+    globe.model.green_nick[id].set("")
 
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            globe.model.red_hardware[i].set('')
-            globe.model.red_id[i].set('')
-            globe.model.red_nick[i].set("")
-            globe.model.green_hardware[i].set('')
-            globe.model.green_id[i].set('')
-            globe.model.green_nick[i].set("")
+            clear_player(id)
     printDebug("Cleared Players")
 
 
