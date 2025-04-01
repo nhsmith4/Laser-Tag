@@ -36,6 +36,10 @@ def set_players():
     for i in range(20):
         ## red team
         player_id:int = globe.model.red_id[i].get()
+        try:
+            player_id = int(player_id)
+        except:
+            continue
         if player_id in id_base.keys():
             clear_red(i)
             tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
@@ -54,6 +58,10 @@ def set_players():
     for i in range(20):
         ## green team
         player_id:int = globe.model.green_id[i].get()
+        try:
+            player_id = int(player_id)
+        except:
+            continue
         if player_id in id_base.keys():
             clear_green(i)
             tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
