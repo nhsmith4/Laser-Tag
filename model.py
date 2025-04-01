@@ -89,6 +89,8 @@ def start(args:list=None) -> None:
         elif arg == "controller":
             debug.flag |= debug.CONTROLLER
             continue
+        elif arg == "udp":
+            debug.flag |= debug.UDP
         elif arg == "FULL":
             debug.flag |= debug.FULL
             continue
