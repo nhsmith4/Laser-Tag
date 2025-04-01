@@ -33,7 +33,7 @@ def get_timer() -> int:
 def set_players():
     id_base = {}
     for i in range(20):
-        player_id = int(globe.model.red_id[i].get())
+        player_id = globe.model.red_id[i].get()
         player_nick = globe.model.red_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
         if inDatabase:
