@@ -7,13 +7,14 @@ import time
 import globe
 from PIL import Image, ImageTk
 import subprocess
-
+import music
 from globe.view import omni_dir, WIDTH, HEIGHT
 import model
 
 gCountdown = None
 
 def create_countdown_screen(root, width=1, height=1, useFactor=True):
+
     global gCountdown
     gCountdown = IntVar(root)
     # Get the screen dimensions
@@ -39,6 +40,8 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # image = Image.open("background.jpg")
     image = Image.open(omni_dir("background.jpg"))
     image = image.resize((screenWidth, screenHeight), Image.Resampling.LANCZOS)
+    # image = image.resize((screenWidth, screenHeight))
+
     backgroundImage = ImageTk.PhotoImage(image)
     
     # Create and pack the image label

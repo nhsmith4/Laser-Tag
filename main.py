@@ -22,7 +22,6 @@ if __name__ == "__main__":
     
     
     
-
     printDebug("Debug Mode Activated")
 
     while(globe.essentials.gameState > 0):

@@ -1,6 +1,7 @@
 import time
 import globe
 import tkinter
+import music
 
 import globe.debug as debug
 import globe.model
@@ -103,6 +104,7 @@ def update() -> None:
         globe.model.time = cur_time
 
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
+        music.play_random_music()
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
     globe.model.timer = timer
