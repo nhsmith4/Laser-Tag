@@ -1,13 +1,18 @@
 import time
 import globe
 import tkinter
+<<<<<<< HEAD
 import music
 import game_play
+=======
+import tkinter.messagebox
+>>>>>>> e44e89587bae9ae7f58b0457bf666a61dc73311d
 
 import globe.debug as debug
 import globe.model
 from globe.debug import printDebug
 
+import udp
 import databaseConn
 
 timer = 80
@@ -34,7 +39,57 @@ def get_timer() -> int:
 def set_players():
     id_base = {}
     for i in range(20):
+        ## red team
+        player_id:int = globe.model.red_id[i].get()
+        try:
+            player_id = int(player_id)
+        except:
+            continue
+        if player_id in id_base.keys():
+            clear_red(i)
+            tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
+            continue
+        id_base[player_id] = 'r'
+        inDatabase:str = databaseConn.player_exists(player_id)
+        if inDatabase:
+            globe.model.red_nick[i].set(inDatabase)
+        else:
+            player_nick:str = globe.model.red_nick[i].get()
+            if player_nick.replace(" ", "") != "":
+                databaseConn.insert_player(player_id, player_nick)
+            else:
+                tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
+
+    for i in range(20):
+        ## green team
+        player_id:int = globe.model.green_id[i].get()
+        try:
+            player_id = int(player_id)
+        except:
+            continue
+        if player_id in id_base.keys():
+            clear_green(i)
+            tkinter.messagebox.showwarning("Duplicate entry",f"ID {player_id} is already used!!!")
+            continue
+        id_base[player_id] = 'g'
+        inDatabase:str = databaseConn.player_exists(player_id)
+        if inDatabase:
+            globe.model.green_nick[i].set(inDatabase)
+        else:
+            player_nick:str = globe.model.green_nick[i].get()
+            if player_nick.replace(" ", "") != "":
+                databaseConn.insert_player(player_id, player_nick)
+            else:
+                tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
+
+
+    '''
+    for i in range(20):
         player_id = globe.model.red_id[i].get()
+        if player_id in id_base:
+            clear_player(i)
+            continue
+        id_base[player_id] = True
         player_nick = globe.model.red_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
         if inDatabase:
@@ -44,6 +99,7 @@ def set_players():
         else:
             printDebug("Player ID and nickname required!!!")
             tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+        udp.udp_send(globe.model.red_hardware[i])
         player_id = globe.model.green_id[i].get()
         player_nick = globe.model.green_nick[i].get()
         inDatabase = databaseConn.player_exists(player_id)
@@ -53,21 +109,32 @@ def set_players():
             databaseConn.insert_player(player_id, player_nick)
         else:
             printDebug("Player ID and nickname required!!!")
-            tkinter.messagebox.Message(None, title="ERROR",message="Player ID and nickname required!!!")
+            tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
+        udp.udp_send(globe.model.green_hardware[i])'''
 
 
+def clear_red(id) -> None:
+    globe.model.red_hardware[id].set('')
+    globe.model.red_id[id].set('')
+    globe.model.red_nick[id].set("")
+
+def clear_green(id) -> None:
+    globe.model.green_hardware[id].set('')
+    globe.model.green_id[id].set('')
+    globe.model.green_nick[id].set("")
 
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            globe.model.red_nick[i].set("")
-            globe.model.green_nick[i].set("")
+            clear_red(id)
+            clear_green(id)
     printDebug("Cleared Players")
 
 
 ## cy - Sets up virtual world
 def start(args:list=None) -> None:
     globe.model.time = time.time()
+    udp.establish_client()
     for arg in args:
         if arg == "debug":
             debug.flag |= debug.DEBUG
@@ -84,6 +151,8 @@ def start(args:list=None) -> None:
         elif arg == "controller":
             debug.flag |= debug.CONTROLLER
             continue
+        elif arg == "udp":
+            debug.flag |= debug.UDP
         elif arg == "FULL":
             debug.flag |= debug.FULL
             continue
@@ -109,6 +178,7 @@ def update() -> None:
         music.play_random_music()
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
+            udp.udp_send(202)
     globe.model.timer = timer
     if (globe.model.red_team_scores[0].get()):
         globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)

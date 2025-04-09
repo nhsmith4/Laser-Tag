@@ -27,18 +27,12 @@ def create_countdown_screen(root, width=1, height=1, useFactor=True):
     # Get the coordinates
     x = (screenWidth / 2) - (winWidth / 2)
     y = (screenHeight / 2) - (winHeight / 2)
-    ##root.geometry(f'{int(winWidth)}x{int(winHeight)}+{int(x)}+{int(y)}')
-    
-    # # Cover the whole screen
-    # root.overrideredirect(True)
-    # root.lift()
     
     # Create the countdown screen frame
     countdown = Frame(root)
     countdown.pack(side=TOP, fill=BOTH, expand=YES)
     
     # Load and resize the image
-    # image = Image.open("background.jpg")
     image = Image.open(omni_dir("background.jpg"))
     image = image.resize((screenWidth, screenHeight), Image.Resampling.LANCZOS)
     # image = image.resize((screenWidth, screenHeight))
@@ -66,9 +60,6 @@ def update_countdown(label, count, root):
 if __name__ == '__main__':
     root = Tk()
     countdown = create_countdown_screen(root)
-    
-    # Start 30-second countdown
-    #update_countdown(countdown.label, 30, root)
     
     # Run Tkinter main loop
     root.mainloop()

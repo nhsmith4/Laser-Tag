@@ -26,7 +26,10 @@ def omni_dir(img:str) -> str:
     if platform == "linux" or platform == "linux2" or platform == "darwin":
         return f"./media/{img}"
     else:
-        return f".\media\{img}"
+        return f".\\media\\{img}"
 
-def toggle_fullscreen():
+def toggle_fullscreen() -> None:
     win.attributes("-fullscreen", not win.attributes("-fullscreen"))
+
+def is_digit(char:chr) -> bool:
+        return char.isdigit()

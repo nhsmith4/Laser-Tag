@@ -1,5 +1,7 @@
 import psycopg2
 import sys
+import globe.debug as debug
+from globe.debug import printDebug
 
 # Creating a connection to the database
 def get_connections():
@@ -9,23 +11,28 @@ def get_connections():
             user="student",
         )
     except Exception as e:
-        print(f"Error: {e}")  
+        printDebug(f"Error: {e}")  
         return None
 
 # Checking if the player ID exists in the database
-def player_exists(id):
+def player_exists(entry_id):
+    try:
+        int(entry_id)
+    except:
+        return None
     conn = get_connections()
     if conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM players WHERE id = %s", (id,))
+        cursor.execute("SELECT * FROM players WHERE id = %s;" % entry_id)
         result = cursor.fetchone()
-        print(result)
+        printDebug(result, debug.ADVANCED)
         conn.close()
         if result:
             return result[1]
         else:
             return None
     return None
+ 
 
 
 # Inserting a player into the database
@@ -41,7 +48,7 @@ def insert_player(id, codename):
         cursor.execute("INSERT INTO players (id, codename) VALUES (%s, %s)", (id, codename))
         conn.commit()
         conn.close()
-        print("Player inserted successfully!")
+        printDebug("Player inserted successfully!")
     else:
         print("Connection failed")
         sys.exit()
