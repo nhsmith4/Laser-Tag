@@ -26,7 +26,7 @@ def play_random_music():
 
 # Function to stop the music
 def stop_music():
-    global music_playing  # Ensure the function modifies the global variable
+    global music_playing  # Modify the global variable
     music_playing = False
     pygame.mixer.music.stop()
 

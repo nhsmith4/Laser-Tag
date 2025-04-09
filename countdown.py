@@ -10,6 +10,7 @@ import subprocess
 import music
 from globe.view import omni_dir, WIDTH, HEIGHT
 import model
+import game_play
 
 gCountdown = None
 
@@ -60,6 +61,7 @@ def update_countdown(label, count, root):
         root.after(1000, update_countdown, label, count - 1, root)
     else:
         root.destroy()
+        
         
 if __name__ == '__main__':
     root = Tk()

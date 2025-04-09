@@ -81,19 +81,34 @@ def start() -> None:
 
 
 
-## cy - View update command / updates windows
+## cy/cw - View update command / updates windows
 def update() -> None:
     global g_local_state
-    printDebug("View update", debug.VIEW | debug.ADVANCED)
     
     try:
-        if(g_local_state != globe.essentials.gameState):
+        if g_local_state != globe.essentials.gameState:
+            # Clean up all frames (No duplicates)
             for frame in globe.view.win_frames:
-                globe.view.win_frames[frame].pack_forget()
+                if isinstance(globe.view.win_frames[frame], tuple):
+                    if frame == globe.essentials.GAME_PLAY and hasattr(globe.view.win_frames[frame][0], 'cleanup_frame'):
+                        globe.view.win_frames[frame][0].cleanup_frame()
+                    globe.view.win_frames[frame][0].pack_forget()
+                else:
+                    globe.view.win_frames[frame].pack_forget()
+            
             g_local_state = globe.essentials.gameState
-            globe.view.win_frames[g_local_state].pack(fill=tkinter.BOTH, expand=True)
+            
+            # Create new frame if it's gameplay
+            if g_local_state == globe.essentials.GAME_PLAY:
+                globe.view.win_frames[g_local_state] = game_play.create_frame(win)
+            
+            # Show the new frame
+            if isinstance(globe.view.win_frames[g_local_state], tuple):
+                globe.view.win_frames[g_local_state][0].pack(fill=tkinter.BOTH, expand=True)
+            else:
+                globe.view.win_frames[g_local_state].pack(fill=tkinter.BOTH, expand=True)
         
-        ##win.update_idletasks()
+        # Update other UI elements
         countdown.gCountdown.set(globe.model.timer)
         win.attributes("-fullscreen", globe.view.win_fullscreen)
         win.update()
