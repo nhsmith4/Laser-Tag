@@ -1,12 +1,10 @@
 import time
 import globe
 import tkinter
-<<<<<<< HEAD
 import music
 import game_play
-=======
+
 import tkinter.messagebox
->>>>>>> e44e89587bae9ae7f58b0457bf666a61dc73311d
 
 import globe.debug as debug
 import globe.model

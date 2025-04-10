@@ -3,6 +3,7 @@ import tkinter as tk
 
 import globe
 import globe.view
+import music
 from globe.view import BLACK, WHITE, RED, GREEN, BLUE
 import globe.model
 import globe.debug as debug
@@ -191,4 +192,5 @@ def cleanup_frame():
 def return_to_entry():
     globe.essentials.gameState = globe.essentials.PLAYER_ENTRY
     cleanup_frame()
+    music.stop_music()
 
