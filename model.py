@@ -37,6 +37,7 @@ def get_timer() -> int:
 
 def send_hardware(id:int) -> None:
     if not globe.model.hardware_used[id]:
+        printDebug("sending ID")
         udp.udp_send(id)
         globe.model.hardware_used[id] = True
 
@@ -63,10 +64,7 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
-        try:
-            send_hardware(globe.model.red_hardware[i])
-        except:
-            pass
+        udp.udp_send(globe.model.red_hardware[i])
         
     
 
@@ -91,10 +89,7 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
-        try:
-            send_hardware(globe.model.green_hardware[i])
-        except:
-            pass
+        udp.udp_send(globe.model.green_hardware[i])
 
 
 def clear_red(id) -> None:
