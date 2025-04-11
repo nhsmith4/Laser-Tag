@@ -61,9 +61,12 @@ def set_players():
             player_nick:str = globe.model.red_nick[i].get()
             if player_nick.replace(" ", "") != "":
                 databaseConn.insert_player(player_id, player_nick)
-                send_hardware(globe.model.red_hardware[i])
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
+        try:
+            send_hardware(globe.model.red_hardware[i])
+        except:
+            pass
         
     
 
@@ -86,9 +89,12 @@ def set_players():
             player_nick:str = globe.model.green_nick[i].get()
             if player_nick.replace(" ", "") != "":
                 databaseConn.insert_player(player_id, player_nick)
-                send_hardware(globe.model.green_hardware[i])
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
+        try:
+            send_hardware(globe.model.green_hardware[i])
+        except:
+            pass
 
 
 def clear_red(id) -> None:
