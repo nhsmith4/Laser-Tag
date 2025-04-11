@@ -64,7 +64,7 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
-        udp.udp_send(globe.model.red_hardware[i])
+        udp.udp_send(globe.model.red_hardware[i].get())
         
     
 
@@ -89,7 +89,7 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
-        udp.udp_send(globe.model.green_hardware[i])
+        udp.udp_send(globe.model.green_hardware[i].get())
 
 
 def clear_red(id) -> None:
