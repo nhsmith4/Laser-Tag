@@ -105,8 +105,8 @@ def clear_green(id) -> None:
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            clear_red(id)
-            clear_green(id)
+            clear_red(i)
+            clear_green(i)
     printDebug("Cleared Players")
 
 
