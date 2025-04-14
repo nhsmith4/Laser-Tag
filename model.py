@@ -160,7 +160,12 @@ def update() -> None:
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
             udp.udp_send(202)
+        return
     globe.model.timer = timer
+
+    if(globe.essentials.gameState == globe.essentials.GAME_PLAY):
+        ## udp_receive
+        return
     if (globe.model.red_team_scores[0].get()):
         globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)
     else:
