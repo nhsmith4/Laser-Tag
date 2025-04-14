@@ -17,13 +17,16 @@ def udp_send(message:str, addr:tuple=None) -> None:
     UDPClient.sendto(str.encode(str(message)), srvrAddrPort)
     printDebug("Sent message {} to server with address {}:{}".format(str(message), globe.essentials.ip_addr, SERVER_PORT), debug.UDP)
 
-    
-
 def udp_receive() -> str:
     global UDPClient
-    message = UDPClient.recvfrom(BUFFER_SIZE)
-    printDebug("Received {} from {}".format(message[0], message[1]), debug.UDP)
-    return message[0]
+    try:
+        data, addr = UDPClient.recvfrom(BUFFER_SIZE)
+        message = data.decode('utf-8')
+        printDebug("Received {} from {}".format(message, addr), debug.UDP)
+        return message
+    except Exception as e:
+        printDebug("Error receiving UDP message: {}".format(e), debug.UDP)
+        return ""
 
 def establish_client() -> None:
     global UDPClient
