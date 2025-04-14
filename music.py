@@ -3,6 +3,9 @@ import random
 import pygame
 import os
 import globe
+import globe.debug as debug
+from globe.debug import printDebug, getDebug
+
 
 from globe.view import omni_dir, WIDTH, HEIGHT
 
@@ -22,11 +25,13 @@ def play_random_music():
         track = random.choice(music_tracks)
         pygame.mixer.music.load(track)
         pygame.mixer.music.play()
+        if (getDebug(debug.CONTROLLER)):
+            print(track)
         music_playing = True
 
-# Function to stop the music
+# Stop the music (may add fading)
 def stop_music():
-    global music_playing  # Modify the global variable
+    global music_playing  # Modifies the global variable
     music_playing = False
     pygame.mixer.music.stop()
 

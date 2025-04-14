@@ -172,8 +172,9 @@ def update() -> None:
         globe.model.time = cur_time
 
     if (globe.essentials.gameState == globe.essentials.COUNTDOWN):
-        # May change track start time
-        music.play_random_music()
+        # Sync track with timer
+        if (timer == 15):
+            music.play_random_music()
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
             udp.udp_send(202)
