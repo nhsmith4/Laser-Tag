@@ -27,7 +27,7 @@ def submit_player(entry_id, entry_nickname):
     if player_id:
         existing_name = entry_nickname.get()
         if databaseConn.player_exists(player_id): 
-            entry_nickname.set(database.player_exists(player_id))
+            entry_nickname.set(databaseConn.player_exists(player_id))
         elif player_id and player_nickname:     
             databaseConn.insert_player(player_id, player_nickname)
         else:
