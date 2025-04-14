@@ -20,6 +20,7 @@ global red_id
 global red_nick
 
 
+
 ## cy - Sets the IP address
 def set_ip() -> None:
     printDebug(globe.view.set_new_ip.get())
@@ -33,6 +34,12 @@ def set_timer(sec:int) -> None:
 def get_timer() -> int:
     global timer
     return timer
+
+def send_hardware(id:int) -> None:
+    if not globe.model.hardware_used[id]:
+        printDebug("sending ID")
+        udp.udp_send(id)
+        globe.model.hardware_used[id] = True
 
 def set_players():
     id_base = {}
@@ -57,6 +64,9 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
+        udp.udp_send(globe.model.red_hardware[i].get())
+        
+    
 
     for i in range(20):
         ## green team
@@ -79,36 +89,7 @@ def set_players():
                 databaseConn.insert_player(player_id, player_nick)
             else:
                 tkinter.messagebox.showwarning("Insufficient Data", f"ID {player_id} requires a nickname!!!")
-
-
-    '''
-    for i in range(20):
-        player_id = globe.model.red_id[i].get()
-        if player_id in id_base:
-            clear_player(i)
-            continue
-        id_base[player_id] = True
-        player_nick = globe.model.red_nick[i].get()
-        inDatabase = databaseConn.player_exists(player_id)
-        if inDatabase:
-            globe.model.red_nick[i].set(inDatabase)
-        elif player_id and player_nick:
-            databaseConn.insert_player(player_id, player_nick)
-        else:
-            printDebug("Player ID and nickname required!!!")
-            tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
-        udp.udp_send(globe.model.red_hardware[i])
-        player_id = globe.model.green_id[i].get()
-        player_nick = globe.model.green_nick[i].get()
-        inDatabase = databaseConn.player_exists(player_id)
-        if inDatabase:
-            globe.model.green_nick[i].set(inDatabase)
-        elif player_id and player_nick:
-            databaseConn.insert_player(player_id, player_nick)
-        else:
-            printDebug("Player ID and nickname required!!!")
-            tkinter.messagebox.showwarning("ERROR","Player ID and nickname required!!!")
-        udp.udp_send(globe.model.green_hardware[i])'''
+        udp.udp_send(globe.model.green_hardware[i].get())
 
 
 def clear_red(id) -> None:
@@ -124,8 +105,8 @@ def clear_green(id) -> None:
 def clear_players():
     printDebug("Clearing Players")
     for i in range(20):
-            clear_red(id)
-            clear_green(id)
+            clear_red(i)
+            clear_green(i)
     printDebug("Cleared Players")
 
 
@@ -133,6 +114,7 @@ def clear_players():
 def start(args:list=None) -> None:
     globe.model.time = time.time()
     udp.establish_client()
+    globe.model.hardware_used = {}
     for arg in args:
         if arg == "debug":
             debug.flag |= debug.DEBUG

@@ -10,6 +10,8 @@ green_team_scores = [0] * 20
 
 message_board_team = ["alice", "sleepy joe", "bluey", "apple pie"]
 
+hardware_used = None
+
 game_time_remaining = None
 time = None
 timer = 7

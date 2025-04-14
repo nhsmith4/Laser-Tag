@@ -13,6 +13,7 @@ from tkinter import messagebox
 import time
 import globe.debug as debug
 globe.model.red_team = None
+import udp
 
 # Game timer variables
 game_duration = 60 * 6 # 6 minutes in seconds
@@ -191,6 +192,9 @@ def cleanup_frame():
 
 def return_to_entry():
     globe.essentials.gameState = globe.essentials.PLAYER_ENTRY
+    udp.udp_send(221)
+    udp.udp_send(221)
+    udp.udp_send(221)
     cleanup_frame()
     music.stop_music()
 
