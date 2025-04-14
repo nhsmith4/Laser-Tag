@@ -20,23 +20,33 @@ def udp_send(message:str, addr:tuple=None) -> None:
 
 def udp_receive() -> str:
     global UDPServer
-    UDPServer = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    UDPServer.setblocking(False)
+    global BUFFER_SIZE
     try:
+        data, addr = UDPServer.recvfrom(BUFFER_SIZE)
+        data = data.decode()
+        return data
+    except:
+        return ""
+    '''try:
         data, addr = UDPServer.recvfrom(BUFFER_SIZE)
         message = data.decode('utf-8')
         printDebug("Received {} from {}".format(message, addr), debug.UDP)
         return message
     except Exception as e:
         printDebug("Error receiving UDP message: {}".format(e), debug.UDP)
-        return ""
+        return "Null"'''
 
 def establish_client() -> None:
     global UDPClient
+    global UDPServer
+    global SERVER_PORT
     if (not globe.essentials.ip_addr):
         globe.essentials.ip_addr = globe.essentials.DEFAULT_IP
     printDebug("Establishing Client", debug.UDP)
     UDPClient = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPServer = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPServer.bind((globe.essentials.ip_addr, SERVER_PORT))
+    UDPServer.setblocking(False)
     return
 
 

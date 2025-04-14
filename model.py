@@ -167,6 +167,10 @@ def update() -> None:
     if(globe.essentials.gameState == globe.essentials.GAME_PLAY):
         ## udp_receive
         udp_str = udp.udp_receive()
-        udp.udp_send(221)
+        if udp_str != "":
+            
+            udp_str = udp_str.split(":")
+            print(udp_str)
+        udp.udp_send("hi")
         return
     
