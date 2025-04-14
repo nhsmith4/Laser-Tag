@@ -1,8 +1,6 @@
 import socket
 import tkinter as tk
 
-import asyncio
-
 import globe.essentials
 import globe.debug as debug
 from globe.debug import printDebug
@@ -12,6 +10,7 @@ CLIENT_PORT = 7500
 SERVER_PORT = 7501
 
 UDPClient = None
+UDPServer = None
 
 def udp_send(message:str, addr:tuple=None) -> None:
     global UDPClient
@@ -20,12 +19,11 @@ def udp_send(message:str, addr:tuple=None) -> None:
     printDebug("Sent message {} to server with address {}:{}".format(str(message), globe.essentials.ip_addr, SERVER_PORT), debug.UDP)
 
 def udp_receive() -> str:
-    global UDPClient
-    UDPClient = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    UDPClient.setblocking(False)
-    loop = asyncio.get_event_loop()
+    global UDPServer
+    UDPServer = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    UDPServer.setblocking(False)
     try:
-        data, addr = UDPClient.recvfrom(BUFFER_SIZE)
+        data, addr = UDPServer.recvfrom(BUFFER_SIZE)
         message = data.decode('utf-8')
         printDebug("Received {} from {}".format(message, addr), debug.UDP)
         return message

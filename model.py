@@ -3,6 +3,7 @@ import globe
 import tkinter
 import music
 import game_play
+import asyncio
 
 import tkinter.messagebox
 
@@ -160,14 +161,12 @@ def update() -> None:
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
             udp.udp_send(202)
+        globe.model.timer = timer
         return
-    globe.model.timer = timer
 
     if(globe.essentials.gameState == globe.essentials.GAME_PLAY):
         ## udp_receive
+        udp_str = udp.udp_receive()
+        udp.udp_send(221)
         return
-    if (globe.model.red_team_scores[0].get()):
-        globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)
-    else:
-        globe.model.red_team_scores[0].set(1)
     
