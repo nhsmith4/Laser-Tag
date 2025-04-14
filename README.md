@@ -73,7 +73,7 @@ The program is designed to be user-intuitive. However, a list of button function
 >
 >```python3 main.py debug <flags>```
 ><br><br>
->The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
+>A flag we commonly used was "controller" but without the quotes. The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
 # Contibutors
 This project was designed and developed by Team 004, codenamed Tag SUWY. The following are the names and accounts of each member:<br>
 <br>&emsp;&emsp;Nicholas Smith:&emsp;&emsp;[@nhsmith4](https://github.com/nhsmith4)
