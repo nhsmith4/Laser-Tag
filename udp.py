@@ -24,10 +24,10 @@ def udp_receive() -> str:
     try:
         data, addr = UDPServer.recvfrom(BUFFER_SIZE)
         data = data.decode()
-        printDebug("Received {} from {}".format(message, addr), debug.UDP)
+        ##printDebug("Received {} from {}".format(message, addr), debug.UDP)
         return data
     except:
-        printDebug("Error receiving UDP message: {}".format(e), debug.UDP)
+        ##printDebug("Error receiving UDP message")
         return ""
 
 def establish_client() -> None:
