@@ -36,6 +36,7 @@ This software is intended to be run with *Python v3.9.2* within a Debian Linux V
 
 To update this software, pull down the [main branch](https://github.com/nhsmith4/Laser-Tag/tree/main) of this project.
 
+## Required Installs
 ### Tkinter
 The library *Tkinter* is the primary library used for graphics. If Tkinter is not installed natively on your machine, you can use the following command to install it.<br><br>
 ```sudo apt install python3-tk```
