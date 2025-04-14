@@ -1,6 +1,8 @@
 import socket
 import tkinter as tk
 
+import asyncio
+
 import globe.essentials
 import globe.debug as debug
 from globe.debug import printDebug
@@ -19,6 +21,9 @@ def udp_send(message:str, addr:tuple=None) -> None:
 
 def udp_receive() -> str:
     global UDPClient
+    UDPClient = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    UDPClient.setblocking(False)
+    loop = asyncio.get_event_loop()
     try:
         data, addr = UDPClient.recvfrom(BUFFER_SIZE)
         message = data.decode('utf-8')
