@@ -226,5 +226,5 @@ def mark_base_hit(team: str, player_id: int, label: tk.Label):
     else:
         return
 
-    label.config(text=f"𝓑 {nickname}") 
-
+    label.config(text=f"𝓑 {nickname}")
+    
