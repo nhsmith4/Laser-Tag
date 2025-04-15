@@ -390,9 +390,11 @@ def mark_base_hit(team: str, player_id: int):
         nickname = globe.model.red_nick[player_id].get()
         globe.model.red_nick[player_id].set(f"𝓑 {nickname}")
         return
-    else:
+    elif team == 'g':
         globe.model.green_base_hit[player_id] = True
         nickname = globe.model.green_nick[player_id].get()
         globe.model.green_nick[player_id].set(f"𝓑 {nickname}")
+        return
+    else:
         return
         
