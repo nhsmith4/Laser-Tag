@@ -56,7 +56,7 @@ def create_frame(root):
     red_team_label = tk.Label(left_frame, text="Red Team", font=("Arial", 16), bg="red", fg="white")
     red_team_label.pack(pady=20)
     create_header(left_frame, "red")
-    for id in range(20):
+    for id in range(15):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
         player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.red_hardware[id])
@@ -74,7 +74,7 @@ def create_frame(root):
     green_team_label = tk.Label(right_frame, text="Green Team", font=("Arial", 16), bg="green", fg="white")
     green_team_label.pack(pady=20)
     create_header(right_frame, "green")
-    for id in range(20):
+    for id in range(15):
         player_frame = tk.Frame(right_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
         player_hardware = tk.Entry(player_frame, font=("Arial", 12), bg="white", fg="black", validate='key', validatecommand=(validation, '%S'), width=2, relief=tk.SUNKEN, textvariable=globe.model.green_hardware[id])
