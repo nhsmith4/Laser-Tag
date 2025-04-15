@@ -81,8 +81,6 @@ def create_frame(root):
         player_frame = tk.Frame(red_players_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
         
-        nickname = globe.model.red_nick[id].get()
-        
         player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
@@ -119,8 +117,6 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(green_players_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        
-        nickname = globe.model.green_nick[id].get()
         
         player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
