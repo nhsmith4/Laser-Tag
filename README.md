@@ -79,7 +79,7 @@ The program is designed to be user-intuitive. However, a list of button function
 ## Generating traffic to test functionality
 In order to test the program by simulating a laser tag game, one must have Professor Strother's Traffic generator running in the background on a different terminal. This can be done by running the line:
 
->```python_trafficgenarator_v2.py```
+>```python3 python_trafficgenarator_v2.py```
 
 In a terminal. When prompted, make sure to enter the same equipment ID on the Player Entry Screen to sync up with the traffic generator.
 
