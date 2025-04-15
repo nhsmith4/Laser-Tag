@@ -28,7 +28,7 @@ red_player_labels = []
 green_player_labels = []  
 
 def create_frame(root):
-    global game_start_time, timer_running, current_screen_active, game_duration, red_total_frame, green_total_frame
+    global game_start_time, timer_running, current_screen_active, game_duration, red_total_frame, green_total_frame, red_player_labels, green_player_labels
 
     green_base_hit = False
     red_base_hit = False
@@ -289,13 +289,8 @@ def create_frame(root):
     # Start the local timer
     start_gameplay_timer(time_label, scrollable_frame, canvas, return_button)
 
-    # #testing cases for mark_base_hit function
-    # mark_base_hit("red", 1,red_player_labels[1])
-    # mark_base_hit("red", 2,red_player_labels[2])
-    # mark_base_hit("green", 0,green_player_labels[0])
-    # mark_base_hit("red", 4,red_player_labels[4])
     
-    return main_frame, time_label, scrollable_frame, return_button, canvas
+    return main_frame
    
     
     
@@ -370,19 +365,15 @@ def return_to_entry():
     music.stop_music()
     # Might need to reset all scores and messages too for reentry to this screen
 
-def mark_base_hit(team: str, player_id: int, label: tk.Label):
-    if team == 'red':
-        globe.model.red_base_hit[player_id] = True
-    elif team == 'green':
-        globe.model.green_base_hit[player_id] = True
-    else:
-        return
-
 def mark_base_hit(team: str, player_id: int):
     global red_player_labels, green_player_labels
     if team == 'r':
         globe.model.red_base_hit[player_id] = True
-        red_player_labels[player_id].config(text=f"𝓑 {globe.model.red_nick[player_id].get()}") 
+        nickname = globe.model.red_nick[player_id].get()
+        red_player_labels[player_id].config(text=f"𝓑 {nickname}")
+        return
     else:
         globe.model.green_base_hit[player_id] = True
-        green_player_labels[player_id].config(text=f"𝓑 {globe.model.green_nick[player_id].get()}")
+        nickname = globe.model.green_nick[player_id].get()
+        red_player_labels[player_id].config(text=f"𝓑 {nickname}")
+        
