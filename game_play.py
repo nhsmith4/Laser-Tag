@@ -24,14 +24,14 @@ FLASH_INTERVAL = 500  # milliseconds between flashes
 flash_state = False  
 flash_active = True   # Should flashing continue
 
-green_base_hit = False
-red_base_hit = False
-
 red_player_labels = []  
 green_player_labels = []  
 
 def create_frame(root):
     global game_start_time, timer_running, current_screen_active, game_duration, red_total_frame, green_total_frame
+
+    green_base_hit = False
+    red_base_hit = False
     
     if (getDebug(debug.CONTROLLER)):
         game_duration = 25 
