@@ -85,7 +85,7 @@ def create_frame(root):
         if (globe.model.red_base_hit[id]) & (red_base_hit == False):
             label_text = f"𝓑 {nickname}"
             red_base_hit = True
-        else: nickname
+        else: label_text = nickname
         player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
@@ -127,7 +127,7 @@ def create_frame(root):
         if (globe.model.green_base_hit[id]) & (green_base_hit == False):
             label_text = f"𝓑 {nickname}"
             green_base_hit = True
-        else: nickname
+        else: label_text = nickname
         player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
