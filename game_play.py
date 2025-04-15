@@ -377,3 +377,12 @@ def mark_base_hit(team: str, player_id: int, label: tk.Label):
         globe.model.green_base_hit[player_id] = True
     else:
         return
+
+def mark_base_hit(team: str, player_id: int):
+    global red_player_labels, green_player_labels
+    if team == 'r':
+        globe.model.red_base_hit[player_id] = True
+        red_player_labels[player_id].config(text=f"𝓑 {nickname}") 
+    else:
+        globe.model.green_base_hit[player_id] = True
+        green_player_labels[player_id].config(text=f"𝓑 {nickname}")

@@ -195,14 +195,16 @@ def update() -> None:
 
             ## Red Base
             if (target == '53'):
-                if tagger in green_hard:
+                if tagger in green_hard and (True not in globe.model.red_base_hit):
                     globe.model.red_base_hit[green_hard.index(tagger)].set(globe.model.red_base_hit[green_hard.index(tagger)].get()+100)
+                    game_play.mark_base_hit('r', red_hard.index(tagger))
                 else:
                     return
             ## Green Base
             if (target == '43'):
-                if tagger in red_hard:
-                    globe.model.green_base_hit[red_hard.index(tagger)].set(globe.model.green_base_hit[red_hard.index(tagger)].get()+100)
+                if tagger in red_hard and (True not in globe.model.green_base_hit):
+                    globe.model.green_base_hit[green_hard.index(tagger)].set(globe.model.green_base_hit[green_hard.index(tagger)].get()+100)
+                    game_play.mark_base_hit('g', green_hard.index(tagger))
                 else:
                     return
 
