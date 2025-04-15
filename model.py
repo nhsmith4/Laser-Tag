@@ -16,9 +16,6 @@ import databaseConn
 
 timer = 80
 
-global red_hardware
-global red_id
-global red_nick
 
 
 
@@ -197,16 +194,12 @@ def update() -> None:
             if (target == '53'):
                 if tagger in green_hard and (True not in globe.model.red_base_hit):
                     globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()+100)
-                    game_play.mark_base_hit('g', green_hard.index(tagger))
-                else:
-                    return
+                    game_play.mark_base_hit('r', green_hard.index(tagger))
             ## Green Base
             if (target == '43'):
                 if tagger in red_hard and (True not in globe.model.green_base_hit):
                     globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()+100)
-                    game_play.mark_base_hit('r', red_hard.index(tagger))
-                else:
-                    return
+                    game_play.mark_base_hit('g', red_hard.index(tagger))
 
 
         return

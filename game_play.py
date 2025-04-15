@@ -387,14 +387,13 @@ def mark_base_hit(team: str, player_id: int):
     global red_player_labels, green_player_labels
     if team == 'r':
         globe.model.red_base_hit[player_id] = True
-        nickname = globe.model.red_nick[player_id].get()
-        globe.model.red_nick[player_id].set(f"𝓑 {nickname}")
-        return
-    elif team == 'g':
-        globe.model.green_base_hit[player_id] = True
         nickname = globe.model.green_nick[player_id].get()
         globe.model.green_nick[player_id].set(f"𝓑 {nickname}")
         return
     else:
+        globe.model.green_base_hit[player_id] = True
+        nickname = globe.model.red_nick[player_id].get()
+        globe.model.red_nick[player_id].set(f"𝓑 {nickname}")
+        print(player_id)
         return
         
