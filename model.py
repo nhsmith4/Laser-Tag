@@ -194,10 +194,17 @@ def update() -> None:
                     globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()-10)
 
             ## Red Base
-
+            if (target == '53'):
+                if tagger in green_hard:
+                    globe.model.red_base_hit[green_hard.index(tagger)].set(globe.model.red_base_hit[green_hard.index(tagger)].get()+100)
+                else:
+                    return
             ## Green Base
-                
+            if (target == '43'):
+                if tagger in red_hard:
+                    globe.model.green_base_hit[red_hard.index(tagger)].set(globe.model.green_base_hit[red_hard.index(tagger)].get()+100)
+                else:
+                    return
 
 
         return
-    
