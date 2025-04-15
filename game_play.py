@@ -337,11 +337,11 @@ def update_gameplay_timer(time_label, message_frame, canvas, return_button):
     if remaining_time <= 0:
         gameplay_timer_running = False
         add_message(message_frame, canvas, "GAME OVER!")
-        for i in range(100):
-            # transmit code 221 many times
-            udp.udp_send(221)
-            udp.udp_send(221)
-            udp.udp_send(221)
+        
+        # transmit code 221 3 times
+        udp.udp_send(221)
+        udp.udp_send(221)
+        udp.udp_send(221)
 
         return_button.config(state=tk.NORMAL)
     else:
@@ -359,11 +359,29 @@ def cleanup_frame():
     #     add_message(message_frame, f"Game event at {int(elapsed)} seconds","")    
 
 def return_to_entry():
+ # Reset all game data
     globe.essentials.gameState = globe.essentials.PLAYER_ENTRY
     
-    cleanup_frame()
+    # Clear team scores and nicknames
+    for i in range(20):
+        globe.model.red_team_scores[i].set(0)
+        globe.model.green_team_scores[i].set(0)
+        globe.model.red_nick[i].set("")
+        globe.model.green_nick[i].set("")
+        globe.model.red_base_hit[i] = False
+        globe.model.green_base_hit[i] = False
+    
+    # Clear team totals
+    globe.model.red_team_total.set(0)
+    globe.model.green_team_total.set(0)
+    
+    # Clear update board
+    globe.model.message_board_team.clear()
+    
+    # Stop music and clean up frame
     music.stop_music()
-    # Might need to reset all scores and messages too for reentry to this screen
+    cleanup_frame()
+
 
 def mark_base_hit(team: str, player_id: int):
     global red_player_labels, green_player_labels
