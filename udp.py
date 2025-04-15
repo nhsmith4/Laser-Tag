@@ -10,6 +10,7 @@ CLIENT_PORT = 7500
 SERVER_PORT = 7501
 
 UDPClient = None
+UDPServer = None
 
 def udp_send(message:str, addr:tuple=None) -> None:
     global UDPClient
@@ -17,20 +18,29 @@ def udp_send(message:str, addr:tuple=None) -> None:
     UDPClient.sendto(str.encode(str(message)), srvrAddrPort)
     printDebug("Sent message {} to server with address {}:{}".format(str(message), globe.essentials.ip_addr, SERVER_PORT), debug.UDP)
 
-    
-
 def udp_receive() -> str:
-    global UDPClient
-    message = UDPClient.recvfrom(BUFFER_SIZE)
-    printDebug("Received {} from {}".format(message[0], message[1]), debug.UDP)
-    return message[0]
+    global UDPServer
+    global BUFFER_SIZE
+    try:
+        data, addr = UDPServer.recvfrom(BUFFER_SIZE)
+        data = data.decode()
+        ##printDebug("Received {} from {}".format(message, addr), debug.UDP)
+        return data
+    except:
+        ##printDebug("Error receiving UDP message")
+        return ""
 
 def establish_client() -> None:
     global UDPClient
+    global UDPServer
+    global SERVER_PORT
     if (not globe.essentials.ip_addr):
         globe.essentials.ip_addr = globe.essentials.DEFAULT_IP
     printDebug("Establishing Client", debug.UDP)
     UDPClient = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPServer = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+    UDPServer.bind((globe.essentials.ip_addr, SERVER_PORT))
+    UDPServer.setblocking(False)
     return
 
 

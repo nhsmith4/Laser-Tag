@@ -36,6 +36,7 @@ This software is intended to be run with *Python v3.9.2* within a Debian Linux V
 
 To update this software, pull down the [main branch](https://github.com/nhsmith4/Laser-Tag/tree/main) of this project.
 
+## Required Installs
 ### Tkinter
 The library *Tkinter* is the primary library used for graphics. If Tkinter is not installed natively on your machine, you can use the following command to install it.<br><br>
 ```sudo apt install python3-tk```
@@ -73,7 +74,7 @@ The program is designed to be user-intuitive. However, a list of button function
 >
 >```python3 main.py debug <flags>```
 ><br><br>
->The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
+>A flag we commonly used was "controller" but without the quotes. The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
 # Contibutors
 This project was designed and developed by Team 004, codenamed Tag SUWY. The following are the names and accounts of each member:<br>
 <br>&emsp;&emsp;Nicholas Smith:&emsp;&emsp;[@nhsmith4](https://github.com/nhsmith4)

@@ -3,6 +3,7 @@ import globe
 import tkinter
 import music
 import game_play
+import asyncio
 
 import tkinter.messagebox
 
@@ -160,9 +161,43 @@ def update() -> None:
         if (timer <= 0):
             globe.essentials.gameState = globe.essentials.GAME_PLAY
             udp.udp_send(202)
-    globe.model.timer = timer
-    if (globe.model.red_team_scores[0].get()):
-        globe.model.red_team_scores[0].set(globe.model.red_team_scores[0].get() + 1)
-    else:
-        globe.model.red_team_scores[0].set(1)
+        globe.model.timer = timer
+        return
+
+    if(globe.essentials.gameState == globe.essentials.GAME_PLAY):
+        ## udp_receive
+        udp_str = udp.udp_receive()
+        if udp_str != "":
+            udp_str = udp_str.split(":")
+            ##printDebug(udp_str)
+            tagger = udp_str[0]
+            target = udp_str[1]
+            udp.udp_send(target)
+
+            red_hard = [i.get() for i in globe.model.red_hardware]
+            green_hard = [j.get() for j in globe.model.green_hardware]
+            printDebug(red_hard, debug.MODEL)
+            printDebug(green_hard, debug.MODEL)
+
+            ## Opposing Team
+            if (tagger in red_hard and target in green_hard) or (tagger in green_hard and target in red_hard):
+                if tagger in red_hard:
+                    globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()+10)
+                if tagger in green_hard:
+                    globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()+10)
+
+            ## Same Team
+            if (tagger in red_hard and target in red_hard) or (tagger in green_hard and target in green_hard):
+                if tagger in red_hard:
+                    globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()-10)
+                if tagger in green_hard:
+                    globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()-10)
+
+            ## Red Base
+
+            ## Green Base
+                
+
+
+        return
     

@@ -193,6 +193,8 @@ def update_gameplay_timer(time_label, message_frame, canvas, return_button):
     if remaining_time <= 0:
         gameplay_timer_running = False
         add_message(message_frame, canvas, "GAME OVER!")
+        for i in range(100):
+            udp.udp_send(221)
         return_button.config(state=tk.NORMAL)
     else:
         time_label.after(1000, lambda: update_gameplay_timer(time_label, message_frame, canvas, return_button))
@@ -210,9 +212,7 @@ def cleanup_frame():
 
 def return_to_entry():
     globe.essentials.gameState = globe.essentials.PLAYER_ENTRY
-    udp.udp_send(221)
-    udp.udp_send(221)
-    udp.udp_send(221)
+    
     cleanup_frame()
     music.stop_music()
 
