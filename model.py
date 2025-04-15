@@ -175,31 +175,41 @@ def update() -> None:
             green_hard = [j.get() for j in globe.model.green_hardware]
             printDebug(red_hard, debug.MODEL)
             printDebug(green_hard, debug.MODEL)
+            message = ""
 
             ## Opposing Team
             if (tagger in red_hard and target in green_hard) or (tagger in green_hard and target in red_hard):
                 if tagger in red_hard:
                     globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()+10)
+                    message = f"{globe.model.red_nick[red_hard.index(tagger)].get()} tagged {globe.model.green_nick[green_hard.index(target)].get()}"
                 if tagger in green_hard:
                     globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()+10)
+                    message = f"{globe.model.green_nick[green_hard.index(tagger)].get()} tagged {globe.model.red_nick[red_hard.index(target)].get()}"
 
             ## Same Team
             if (tagger in red_hard and target in red_hard) or (tagger in green_hard and target in green_hard):
                 if tagger in red_hard:
                     globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()-10)
+                    message = f"{globe.model.red_nick[red_hard.index(tagger)].get()} tagged {globe.model.red_nick[red_hard.index(target)].get()}"
                 if tagger in green_hard:
                     globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()-10)
+                    message = f"{globe.model.green_nick[green_hard.index(tagger)].get()} tagged {globe.model.green_nick[green_hard.index(target)].get()}"
 
             ## Red Base
             if (target == '53'):
                 if tagger in green_hard and (True not in globe.model.red_base_hit):
                     globe.model.green_team_scores[green_hard.index(tagger)].set(globe.model.green_team_scores[green_hard.index(tagger)].get()+100)
                     game_play.mark_base_hit('r', green_hard.index(tagger))
+                    message = f"{globe.model.green_nick[green_hard.index(tagger)].get()} hit the Red Base!!!"
             ## Green Base
             if (target == '43'):
                 if tagger in red_hard and (True not in globe.model.green_base_hit):
                     globe.model.red_team_scores[red_hard.index(tagger)].set(globe.model.red_team_scores[red_hard.index(tagger)].get()+100)
                     game_play.mark_base_hit('g', red_hard.index(tagger))
+                    message = f"{globe.model.red_nick[red_hard.index(tagger)].get()} hit the Green Base!!!"
+
+            if message != "":
+                pass
 
 
         return
