@@ -22,17 +22,17 @@ original_image = None
 def create_countdown_screen(root):
     global gCountdown, background_image_tk, original_image
     
-    gCountdown = IntVar(root, value="")  # Initialize empty
+    gCountdown = IntVar(root, value="") 
     
     # Create the container frame
     countdown_frame = Frame(root)
     countdown_frame.pack(fill=BOTH, expand=YES)
     
-    # Load the original image
+    # Load original image
     original_image = Image.open(omni_dir("background.jpg"))
     
     # Create initial background image
-    bg_width = root.winfo_width() or 800  # Default if not yet visible
+    bg_width = root.winfo_width() or 800  # Default if not visible
     bg_height = root.winfo_height() or 600
     resized_image = original_image.resize((bg_width, bg_height), Image.Resampling.LANCZOS)
     background_image_tk = ImageTk.PhotoImage(resized_image)
