@@ -86,7 +86,7 @@ def create_frame(root):
             label_text = f"𝓑 {nickname}"
             red_base_hit = True
         else: label_text = nickname
-        player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="red", fg="white", anchor="w")
+        player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
         score_label = tk.Label(player_frame, textvariable=globe.model.red_team_scores[id], font=("Arial", 14), bg="red", fg="white", anchor="e")
@@ -128,7 +128,7 @@ def create_frame(root):
             label_text = f"𝓑 {nickname}"
             green_base_hit = True
         else: label_text = nickname
-        player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="green", fg="white", anchor="w")
+        player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
         score_label = tk.Label(player_frame, textvariable=globe.model.green_team_scores[id], font=("Arial", 14), bg="green", fg="white", anchor="e")
@@ -388,10 +388,13 @@ def mark_base_hit(team: str, player_id: int):
     if team == 'r':
         globe.model.red_base_hit[player_id] = True
         nickname = globe.model.red_nick[player_id].get()
-        red_player_labels[player_id].config(text=f"𝓑 {nickname}")
+        globe.model.red_nick[player_id].set(f"𝓑 {nickname}")
         return
-    else:
+    elif team == 'g':
         globe.model.green_base_hit[player_id] = True
         nickname = globe.model.green_nick[player_id].get()
-        red_player_labels[player_id].config(text=f"𝓑 {nickname}")
+        globe.model.green_nick[player_id].set(f"𝓑 {nickname}")
+        return
+    else:
+        return
         
