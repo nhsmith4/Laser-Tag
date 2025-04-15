@@ -360,6 +360,7 @@ def return_to_entry():
     
     cleanup_frame()
     music.stop_music()
+    # Might need to reset all scores and messages too for reentry to this screen
 
 def mark_base_hit(team: str, player_id: int, label: tk.Label):
     if team == 'red':
