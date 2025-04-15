@@ -141,6 +141,7 @@ def create_frame(root):
     # Start the local timer
     start_gameplay_timer(time_label, scrollable_frame, canvas, return_button)
 
+    #testing cases for mark_base_hit function
     mark_base_hit("red", 1,red_player_labels[1])
     mark_base_hit("red", 2,red_player_labels[2])
     mark_base_hit("green", 0,green_player_labels[0])
@@ -227,4 +228,3 @@ def mark_base_hit(team: str, player_id: int, label: tk.Label):
         return
 
     label.config(text=f"𝓑 {nickname}")
-    
