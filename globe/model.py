@@ -15,3 +15,10 @@ hardware_used = None
 game_time_remaining = None
 time = None
 timer = 7
+
+# Track whether each player on the red/green team has hit base
+red_base_hit = [False] * 20
+green_base_hit = [False] * 20
+
+
+

@@ -50,7 +50,7 @@ def insert_player(id, codename):
         conn.close()
         printDebug("Player inserted successfully!")
     else:
-        print("Connection failed")
+        print("Connection failed database!")
         sys.exit()
 
 if __name__ == "__main__":

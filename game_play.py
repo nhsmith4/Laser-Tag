@@ -21,7 +21,8 @@ game_start_time = None
 gameplay_timer_running = False
 current_screen_active = False
 
-
+red_player_labels = []  # Store red team labels here
+green_player_labels = []  # Store green team labels here
 
 def create_frame(root):
     global game_start_time, timer_running, current_screen_active, game_duration
@@ -59,8 +60,13 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(left_frame, bg="red")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
+        #
+        nickname = globe.model.red_nick[id].get()
+        label_text = f"𝓑 {nickname}" if globe.model.red_base_hit[id] else nickname
+        player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
+        red_player_labels.append(player_label)
+        #
         score_label = tk.Label(player_frame, textvariable=globe.model.red_team_scores[id], font=("Arial", 14), bg="red", fg="white", anchor="e")
         score_label.pack(side=tk.RIGHT)
     
@@ -72,8 +78,13 @@ def create_frame(root):
     for id in range(20):
         player_frame = tk.Frame(right_frame, bg="green")
         player_frame.pack(fill=tk.X, padx=10, pady=2)
-        player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
+        #
+        nickname = globe.model.green_nick[id].get()
+        label_text = f"𝓑 {nickname}" if globe.model.green_base_hit[id] else nickname
+        player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
+        green_player_labels.append(player_label)
+        #
         score_label = tk.Label(player_frame, textvariable=globe.model.green_team_scores[id], font=("Arial", 14), bg="green", fg="white", anchor="e")
         score_label.pack(side=tk.RIGHT)
 
@@ -129,8 +140,15 @@ def create_frame(root):
     
     # Start the local timer
     start_gameplay_timer(time_label, scrollable_frame, canvas, return_button)
+
+    mark_base_hit("red", 1,red_player_labels[1])
+    mark_base_hit("red", 2,red_player_labels[2])
+    mark_base_hit("green", 0,green_player_labels[0])
+    mark_base_hit("red", 4,red_player_labels[4])
     
     return main_frame, time_label, scrollable_frame, return_button, canvas
+   
+    
     
 def add_message(message_frame, canvas, text):
     if not isinstance(canvas, tk.Canvas):
@@ -197,4 +215,16 @@ def return_to_entry():
     udp.udp_send(221)
     cleanup_frame()
     music.stop_music()
+
+def mark_base_hit(team: str, player_id: int, label: tk.Label):
+    if team == 'red':
+        globe.model.red_base_hit[player_id] = True
+        nickname = globe.model.red_nick[player_id].get()
+    elif team == 'green':
+        globe.model.green_base_hit[player_id] = True
+        nickname = globe.model.green_nick[player_id].get()
+    else:
+        return
+
+    label.config(text=f"𝓑 {nickname}") 
 
