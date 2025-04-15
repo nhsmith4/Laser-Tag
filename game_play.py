@@ -24,6 +24,8 @@ FLASH_INTERVAL = 500  # milliseconds between flashes
 flash_state = False  
 flash_active = True   # Should flashing continue
 
+green_base_hit = False
+red_base_hit = False
 
 red_player_labels = []  
 green_player_labels = []  
@@ -80,7 +82,10 @@ def create_frame(root):
         player_frame.pack(fill=tk.X, padx=10, pady=2)
         
         nickname = globe.model.red_nick[id].get()
-        label_text = f"𝓑 {nickname}" if globe.model.red_base_hit[id] else nickname
+        if (globe.model.red_base_hit[id]) & (red_base_hit == False):
+            label_text = f"𝓑 {nickname}"
+            red_base_hit = True
+        else: nickname
         player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="red", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
@@ -119,7 +124,10 @@ def create_frame(root):
         player_frame.pack(fill=tk.X, padx=10, pady=2)
         
         nickname = globe.model.green_nick[id].get()
-        label_text = f"𝓑 {nickname}" if globe.model.green_base_hit[id] else nickname
+        if (globe.model.green_base_hit[id]) & (green_base_hit == False):
+            label_text = f"𝓑 {nickname}"
+            green_base_hit = True
+        else: nickname
         player_label = tk.Label(player_frame, text=label_text, font=("Arial", 14), bg="green", fg="white", anchor="w")
         player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
         
@@ -365,11 +373,7 @@ def return_to_entry():
 def mark_base_hit(team: str, player_id: int, label: tk.Label):
     if team == 'red':
         globe.model.red_base_hit[player_id] = True
-        nickname = globe.model.red_nick[player_id].get()
     elif team == 'green':
         globe.model.green_base_hit[player_id] = True
-        nickname = globe.model.green_nick[player_id].get()
     else:
         return
-
-    label.config(text=f"𝓑 {nickname}")
