@@ -69,19 +69,21 @@ To run the program ***manually***, ensure your terminal is within the directory 
 No arguments or other executables are required for this program to run correctly.<br>
 The program is designed to be user-intuitive. However, a list of button functionality and keyboard shortcuts is provided by visiting our [game functionality and controls page](https://github.com/nhsmith4/Laser-Tag/wiki/Controls).
 
-## Generating traffic to test functionality
-In order to test the program by simulating a laser tag game, one must have Professor Strother's Traffic generator running in the background on a different terminal. This can be done by running the line:
-
-python_trafficgenarator_v2.py
-
-In a terminal. When prompted, make sure to enter the same equipment ID on the Player Entry Screen to sync up with the traffic generator.
-
 >[!NOTE]
 ><br>The program includes an additional debug mode for help with locating program errors. Debug mode can be activated by the following command:<br>
 >
 >```python3 main.py debug <flags>```
 ><br><br>
 >A flag we commonly used was "controller" but without the quotes. The list of available arguments and their functionality can be found in the [debug wiki page](https://github.com/nhsmith4/Laser-Tag/wiki/Debug-Mode).
+
+## Generating traffic to test functionality
+In order to test the program by simulating a laser tag game, one must have Professor Strother's Traffic generator running in the background on a different terminal. This can be done by running the line:
+
+>```python_trafficgenarator_v2.py```
+
+In a terminal. When prompted, make sure to enter the same equipment ID on the Player Entry Screen to sync up with the traffic generator.
+
+
 # Contibutors
 This project was designed and developed by Team 004, codenamed Tag SUWY. The following are the names and accounts of each member:<br>
 <br>&emsp;&emsp;Nicholas Smith:&emsp;&emsp;[@nhsmith4](https://github.com/nhsmith4)
