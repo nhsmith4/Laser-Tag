@@ -28,7 +28,7 @@ def create_countdown_screen(root):
     countdown_frame = Frame(root)
     countdown_frame.pack(fill=BOTH, expand=YES)
     
-    # Load original image
+    # Load the original image
     original_image = Image.open(omni_dir("background.jpg"))
     
     # Create initial background image
@@ -72,7 +72,7 @@ def update_countdown(count, callback=None):
         if callback:
             callback()
         
-        
+# Mostly vestigial        
 if __name__ == '__main__':
     root = Tk()
     countdown = create_countdown_screen(root)
