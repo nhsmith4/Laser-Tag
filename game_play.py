@@ -371,8 +371,8 @@ def return_to_entry():
     
     # Clear team scores and nicknames
     for i in range(20):
-        globe.model.red_team_scores[i].set('')
-        globe.model.green_team_scores[i].set('')
+        globe.model.red_team_scores[i].set(0)
+        globe.model.green_team_scores[i].set(0)
         globe.model.red_nick[i].set("")
         globe.model.green_nick[i].set("")
         globe.model.red_base_hit[i] = False
