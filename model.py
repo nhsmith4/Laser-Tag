@@ -209,7 +209,9 @@ def update() -> None:
                     message = f"{globe.model.red_nick[red_hard.index(tagger)].get()} hit the Green Base!!!"
 
             if message != "":
-                pass
+                # Add message to the message board
+                globe.model.message_board_team.append(message)
+                print( globe.model.message_board_team)
 
 
         return

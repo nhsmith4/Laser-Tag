@@ -27,6 +27,10 @@ flash_active = True   # Should flashing continue
 red_player_labels = []  
 green_player_labels = []  
 
+# Store message labels for updating
+message_labels = []
+
+
 def create_frame(root):
     global game_start_time, timer_running, current_screen_active, game_duration, red_total_frame, green_total_frame, red_player_labels, green_player_labels
 
@@ -95,7 +99,7 @@ def create_frame(root):
             'id': id
         })
     
-    # Add Red Team Total section (store frame for flashing)
+    # Add Red Team Total section (store frame for total flashing)
     red_total_frame = tk.Frame(left_frame, bg="red")
     red_total_frame.pack(fill=tk.X, padx=10, pady=10)
     tk.Label(red_total_frame, text="Total Score:", font=("Arial", 14, "bold"), bg="red", fg="white").pack(side=tk.LEFT)
@@ -153,7 +157,7 @@ def create_frame(root):
             player['frame'].pack_forget()
             player['frame'].pack(fill=tk.X, padx=10, pady=2)
         
-        # Schedule next update
+        # Schedule the next update
         root.after(400, update_player_order)
 
     # Function to update totals and flashing
@@ -229,76 +233,94 @@ def create_frame(root):
     # Middle Area (Message Area)
     middle_frame = tk.Frame(main_frame, bg="black")
     middle_frame.grid(row=0, column=1, sticky="nsew")
-    
+
     # Message display title
     tk.Label(middle_frame, text="Live Messages", font=("Arial", 16), bg="black", fg="white").pack(pady=10)
-    
+
     # Create scrollable message area
     msg_container = tk.Frame(middle_frame, bg="black")
     msg_container.pack(fill=tk.BOTH, expand=True)
-    
+
     # Create canvas and scrollbar
     canvas = tk.Canvas(msg_container, bg="black", highlightthickness=0)
     scrollbar = tk.Scrollbar(msg_container, orient="vertical", command=canvas.yview)
     scrollable_frame = tk.Frame(canvas, bg="black")
-    
+
     scrollable_frame.bind(
         "<Configure>",
         lambda e: canvas.configure(
             scrollregion=canvas.bbox("all")
         )
     )
-    
+
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
     canvas.configure(yscrollcommand=scrollbar.set)
-    
+
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
-    
-    # Add existing messages
+
+    # Store last known message count
+    if not hasattr(globe.model, 'last_message_count'):
+        globe.model.last_message_count = 0
+
+    def update_message_board():
+        """Update the message board with only new messages"""
+        current_count = len(globe.model.message_board_team)
+        
+        # Only process if new messages exist
+        if current_count > globe.model.last_message_count:
+            # Add only the new messages
+            for i in range(globe.model.last_message_count, current_count):
+                message = globe.model.message_board_team[i]
+                msg = tk.Label(scrollable_frame, text=message, font=("Arial", 10), bg="black", fg="white", anchor="w", wraplength=300)
+                msg.pack(fill=tk.X, padx=20, pady=2)
+            
+            # Auto-scroll to bottom
+            canvas.yview_moveto(1.0)
+            
+            # Update the count tracker to only add newest
+            globe.model.last_message_count = current_count
+        
+        # Schedule next update
+        root.after(100, update_message_board)
+
+    # Initial setup - add existing messages
+    globe.model.last_message_count = len(globe.model.message_board_team)
     for message in globe.model.message_board_team:
-        add_message(scrollable_frame, canvas, message) 
-    
-    # Add empty lines if needed
-    for i in range(20 - len(globe.model.message_board_team)):
-        add_message(scrollable_frame, canvas, "") 
-    
-     # Timer display
+        msg = tk.Label(scrollable_frame, 
+                    text=message, 
+                    font=("Arial", 10), 
+                    bg="black", 
+                    fg="white", 
+                    anchor="w", 
+                    wraplength=300)
+        msg.pack(fill=tk.X, padx=20, pady=2)
+
+    # Auto-scroll to bottom
+    canvas.yview_moveto(1.0)
+
+    # Start the updater
+    update_message_board()
+
+
+
+    # Timer display
     timer_frame = tk.Frame(middle_frame, bg="#111111")
     timer_frame.pack(fill=tk.X, padx=20, pady=10)
     tk.Label(timer_frame, text="Time Remaining:", font=("Arial", 16), bg="#111111", fg="white", anchor="w").pack(side=tk.LEFT)
     time_label = tk.Label(timer_frame, textvariable=globe.model.gameplay_time_remaining, font=("Arial",16), bg="#111111", fg="white", anchor="e")
     time_label.pack(side=tk.RIGHT, expand=True, fill=tk.X)
-    
+
     # Return to player entry button (initially disabled)
     return_button = tk.Button(middle_frame, text="Return to Player Entry", command=return_to_entry, state=tk.DISABLED)
     return_button.pack(pady=10)
-    
+
     current_screen_active = True
-    
+
     # Start the local timer
     start_gameplay_timer(time_label, scrollable_frame, canvas, return_button)
 
-    
     return main_frame
-   
-    
-    
-def add_message(message_frame, canvas, text):
-    if not isinstance(canvas, tk.Canvas):
-        print(f"Error: Expected Canvas widget, got {type(canvas)}")
-        return None
-    
-    msg = tk.Label(message_frame, text=text, font=("Arial", 10), bg="black", fg="white", anchor="w", wraplength=300)
-    msg.pack(fill=tk.X, padx=20, pady=2)
-    
-    try:
-        canvas.update_idletasks()
-        canvas.yview_moveto(1.0)  # Scroll to bottom
-    except AttributeError as e:
-        print(f"Canvas scrolling error: {e}")
-    
-    return msg
 
 def start_gameplay_timer(time_label, message_frame, canvas, return_button):
     global game_start_time, gameplay_timer_running
@@ -326,7 +348,6 @@ def update_gameplay_timer(time_label, message_frame, canvas, return_button):
     
     if remaining_time <= 0:
         gameplay_timer_running = False
-        add_message(message_frame, canvas, "GAME OVER!")
         
         # transmit code 221 3 times
         udp.udp_send(221)
@@ -342,11 +363,7 @@ def cleanup_frame():
     global gameplay_timer_running, current_screen_active
     current_screen_active = False
     gameplay_timer_running = False
-
-
-    # # Should simulate adding game events but mid
-    # if int(elapsed) % 5 == 0:  # (Add a message every 5 seconds for demo)
-    #     add_message(message_frame, f"Game event at {int(elapsed)} seconds","")    
+    
 
 def return_to_entry():
  # Reset all game data
