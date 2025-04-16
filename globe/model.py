@@ -1,12 +1,12 @@
 red_hardware = None
 red_id = None
 red_nick = [None] * 20  
-red_team_scores = [0] * 20
+red_team_scores = [] * 20
 
 green_hardware = None
 green_id = None
 green_nick = [None] * 20
-green_team_scores = [0] * 20
+green_team_scores = [] * 20
 
 message_board_team = []
 
