@@ -82,22 +82,25 @@ def create_frame(root):
     # Store player frames and data for sorting
     red_player_data = []
     for id in range(20):
-        player_frame = tk.Frame(red_players_frame, bg="red")
-        player_frame.pack(fill=tk.X, padx=10, pady=2)
-        
-        player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
-        player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        
-        score_label = tk.Label(player_frame, textvariable=globe.model.red_team_scores[id], font=("Arial", 14), bg="red", fg="white", anchor="e")
-        score_label.pack(side=tk.RIGHT)
-        
-        red_player_labels.append(player_label)
-        red_player_data.append({
-            'frame': player_frame,
-            'label': player_label,
-            'score_var': globe.model.red_team_scores[id],
-            'id': id
-        })
+        # Only create player frame if nickname exists
+        if globe.model.red_nick[id].get():
+            player_frame = tk.Frame(red_players_frame, bg="red")
+            player_frame.pack(fill=tk.X, padx=10, pady=2)
+            
+            player_label = tk.Label(player_frame, textvariable=globe.model.red_nick[id], font=("Arial", 14), bg="red", fg="white", anchor="w")
+            player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
+            
+            score_label = tk.Label(player_frame, textvariable=globe.model.red_team_scores[id], font=("Arial", 14), bg="red", fg="white", anchor="e")
+            score_label.pack(side=tk.RIGHT)
+            
+            red_player_labels.append(player_label)
+            red_player_data.append({
+                'frame': player_frame,
+                'label': player_label,
+                'score_var': globe.model.red_team_scores[id],
+                'id': id,
+                'visible': True
+            })
     
     # Add Red Team Total section (store frame for total flashing)
     red_total_frame = tk.Frame(left_frame, bg="red")
@@ -119,22 +122,24 @@ def create_frame(root):
     # Store player frames and data for sorting
     green_player_data = []
     for id in range(20):
-        player_frame = tk.Frame(green_players_frame, bg="green")
-        player_frame.pack(fill=tk.X, padx=10, pady=2)
-        
-        player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
-        player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
-        
-        score_label = tk.Label(player_frame, textvariable=globe.model.green_team_scores[id], font=("Arial", 14), bg="green", fg="white", anchor="e")
-        score_label.pack(side=tk.RIGHT)
-        
-        green_player_labels.append(player_label)
-        green_player_data.append({
-            'frame': player_frame,
-            'label': player_label,
-            'score_var': globe.model.green_team_scores[id],
-            'id': id
-        })
+        if globe.model.green_nick[id].get():
+            player_frame = tk.Frame(green_players_frame, bg="green")
+            player_frame.pack(fill=tk.X, padx=10, pady=2)
+            
+            player_label = tk.Label(player_frame, textvariable=globe.model.green_nick[id], font=("Arial", 14), bg="green", fg="white", anchor="w")
+            player_label.pack(side=tk.LEFT, expand=True, fill=tk.X)
+            
+            score_label = tk.Label(player_frame, textvariable=globe.model.green_team_scores[id], font=("Arial", 14), bg="green", fg="white", anchor="e")
+            score_label.pack(side=tk.RIGHT)
+            
+            green_player_labels.append(player_label)
+            green_player_data.append({
+                'frame': player_frame,
+                'label': player_label,
+                'score_var': globe.model.green_team_scores[id],
+                'id': id,
+                'visible': True
+            })
     
     # Add Green Team Total section (store frame for flashing)
     green_total_frame = tk.Frame(right_frame, bg="green")
@@ -287,13 +292,7 @@ def create_frame(root):
     # Initial setup - add existing messages
     globe.model.last_message_count = len(globe.model.message_board_team)
     for message in globe.model.message_board_team:
-        msg = tk.Label(scrollable_frame, 
-                    text=message, 
-                    font=("Arial", 10), 
-                    bg="black", 
-                    fg="white", 
-                    anchor="w", 
-                    wraplength=300)
+        msg = tk.Label(scrollable_frame,text=message,font=("Arial", 10), bg="black", fg="white", anchor="w", wraplength=300)
         msg.pack(fill=tk.X, padx=20, pady=2)
 
     # Auto-scroll to bottom
